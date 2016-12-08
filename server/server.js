@@ -8,6 +8,7 @@ const dbConnection = require('./db/connection.js');
 const session = require('express-session');
 const passport = require('passport');
 const Strategy = require('passport-facebook').Strategy;
+require('dotenv')
 
 // Use express and export it
 const app = express();
@@ -24,8 +25,8 @@ module.exports.NODEPORT = process.env.PORT || 4040;
 
 if (process.env.server) {
   passport.use(new Strategy({
-    clientID: '562992560574330',
-    clientSecret: '4fb2721bc34c904f67ac8f9d1623b40f',
+    clientID: process.env.FB_ID,
+    clientSecret: process.env.FB_SECRET,
     callbackURL: 'https://foodrunnerapp.herokuapp.com/facebook/oauth'
   },
   //facebook sends back tokens and profile
@@ -51,8 +52,8 @@ if (process.env.server) {
   }));
 } else {
   passport.use(new Strategy({
-    clientID: '562992560574330',
-    clientSecret: '4fb2721bc34c904f67ac8f9d1623b40f',
+    clientID: process.env.FB_ID,
+    clientSecret: process.env.FB_SECRET,
     callbackURL: 'http://127.0.0.1:' + module.exports.NODEPORT + '/facebook/oauth'
   },
   //facebook sends back tokens and profile
