@@ -24,9 +24,9 @@ module.exports.NODEPORT = process.env.PORT || 4040;
 
 if (process.env.server) {
   passport.use(new Strategy({
-    clientID: '361835207541944',
-    clientSecret: 'ca1b1d29b3c119872740b588527bd6fb',
-    callbackURL: 'https://food-runner.herokuapp.com/facebook/oauth'
+    clientID: '562992560574330',
+    clientSecret: '4fb2721bc34c904f67ac8f9d1623b40f',
+    callbackURL: 'YOUR_APP_LINK_HERE'
   },
   //facebook sends back tokens and profile
   function(accessToken, refreshToken, profile, done) {
@@ -51,8 +51,8 @@ if (process.env.server) {
   }));
 } else {
   passport.use(new Strategy({
-    clientID: '361835207541944',
-    clientSecret: 'ca1b1d29b3c119872740b588527bd6fb',
+    clientID: '562992560574330',
+    clientSecret: '4fb2721bc34c904f67ac8f9d1623b40f',
     callbackURL: 'http://127.0.0.1:' + module.exports.NODEPORT + '/facebook/oauth'
   },
   //facebook sends back tokens and profile
