@@ -10,7 +10,6 @@ const passport = require('passport');
 const Strategy = require('passport-facebook').Strategy;
 require('dotenv').config();
 
-console.log(process.env.FB_ID)
 // Use express and export it
 const app = express();
 module.exports.app = app;
