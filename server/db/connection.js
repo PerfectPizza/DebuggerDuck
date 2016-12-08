@@ -1,5 +1,5 @@
 const mongoose = require ('mongoose');
-require('dotenv')
+require('dotenv').config();
 
 //This must be called because mongoose's promises library is deprecated
 mongoose.Promise = global.Promise;

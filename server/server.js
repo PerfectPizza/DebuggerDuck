@@ -8,7 +8,7 @@ const dbConnection = require('./db/connection.js');
 const session = require('express-session');
 const passport = require('passport');
 const Strategy = require('passport-facebook').Strategy;
-require('dotenv')
+require('dotenv').config();
 
 // Use express and export it
 const app = express();
