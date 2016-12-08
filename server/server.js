@@ -26,7 +26,7 @@ if (process.env.server) {
   passport.use(new Strategy({
     clientID: '562992560574330',
     clientSecret: '4fb2721bc34c904f67ac8f9d1623b40f',
-    callbackURL: 'YOUR_APP_LINK_HERE'
+    callbackURL: 'https://foodrunnerapp.herokuapp.com/facebook/oauth'
   },
   //facebook sends back tokens and profile
   function(accessToken, refreshToken, profile, done) {
