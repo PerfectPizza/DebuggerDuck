@@ -14,7 +14,6 @@ module.exports = {
 
   user: {
     get: (req, res) => {
-      console.log("----------req.user: ",req.user)
       db.User.findOne({fb_id: req.user.id}).exec()
         .then((user) => {
           res.status(200).send(user);
@@ -48,7 +47,7 @@ module.exports = {
         })
         .catch((err) => {
           console.error(err);
-          res.sendStatus(400);
+          res.sendStatus(500);
         })
     },
     // Group controller functions for GET
