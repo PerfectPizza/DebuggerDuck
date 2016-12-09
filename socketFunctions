@@ -1,0 +1,27 @@
+//client -- incoming message
+function setSocket(orderId) {
+  socket.on('chat message' + orderId, function(msg){
+    console.log('Incoming Msg: ', msg)
+    $('#orders').append($('<li>').text(msg));
+  })
+}
+
+
+//client --- outgoing message
+function sendMessage (order,message) {
+    socket.emit('chat', {orderId:order, message: message})
+  }
+
+
+//on form submit
+  $('form#messageForm').submit(function(){
+    sendMessage(randNum,$('#m').val());
+    $('#m').val('');
+    return false;
+  })
+
+// append chat message
+  socket.on('chat message' + 3, function(msg){
+    console.log('Incoming Msg: ', msg)
+    $('#orders').append($('<li>').text(msg));
+  })
