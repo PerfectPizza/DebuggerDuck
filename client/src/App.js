@@ -27,6 +27,7 @@ class Runner extends Component {
   constructor(props) {
     super(props);
 //holds the logged in state, username, picture
+//****      ERROR     *****  happens when this.state.username = '' (undefined), it isn't changed somehow
     this.state = {
       loggedIn: false,
       username: '',

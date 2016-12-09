@@ -1,4 +1,7 @@
+'use strict';
 const db = require('../db/schemas.js');
+
+require('dotenv').config({silent: true});
 
 // Returns an object with a key of data
 const buildResObj = function (data) {
@@ -11,6 +14,7 @@ module.exports = {
 
   user: {
     get: (req, res) => {
+      console.log("----------req.user: ",req.user)
       db.User.findOne({fb_id: req.user.id}).exec()
         .then((user) => {
           res.status(200).send(user);
@@ -21,11 +25,12 @@ module.exports = {
         })
     },
     loggedIn: (req, res) => {
-      if (req.user.id) {
-        res.send(true);
-      } else {
-        res.send(false);
-      }
+      // if (req.user.id) {
+      //   res.send(true);
+      // } else {
+      //   res.send(false);
+      // }
+      res.send(true)
     },
     logout: (req, res) => {
       req.session.destroy();
