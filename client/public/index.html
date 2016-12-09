@@ -22,6 +22,15 @@
       <script src="lib/lodash/lodash.js"></script>
       <script src="dist/app.js"></script>
       <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+      <script src="lib/socket.io-client/dist/socket.io.min.js"></script>
+      <script>
+        var socket = io();
+
+        socket.on('user connected',function(){
+          console.log('user connected');
+        }) 
+
+      </script>
     </footer>
   </body>
 </html>

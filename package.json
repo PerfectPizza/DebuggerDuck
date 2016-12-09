@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "npm run build; nodemon --ignore 'client/*.js' server/server.js",
+    "start": "npm run build | nodemon --ignore 'client/*.js' server/server.js",
     "build": "./node_modules/.bin/gulp build"
   },
   "devDependencies": {},
@@ -35,6 +35,8 @@
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-modal-bootstrap": "^1.1.0",
+    "socket.io": "^1.7.1",
+    "socket.io-client": "^1.7.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.7.0"

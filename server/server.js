@@ -1,5 +1,8 @@
+'use strict';
 const path = require('path');
 const express = require('express');
+const app = express();
+const server = app.listen(4040);
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const router = require('./util/router.js');
@@ -8,11 +11,16 @@ const dbConnection = require('./db/connection.js');
 const session = require('express-session');
 const passport = require('passport');
 const Strategy = require('passport-facebook').Strategy;
-require('dotenv').config();
+const io = require('socket.io').listen(server);
+
+require('dotenv').config({silent: true});
 
 // Use express and export it
-const app = express();
+
 module.exports.app = app;
+
+
+
 
 // Check to see if there is a port environment variable or just use port 4040 instead
 module.exports.NODEPORT = process.env.PORT || 4040;
@@ -144,10 +152,14 @@ app.get('/facebook/oauth', passport.authenticate('facebook', {failureRedirect: '
 // what happens with the requests
 app.use('/api', router);
 
-// Start the actual server listening on the port variable
-app.listen(module.exports.NODEPORT, function (err) {
-  // If there is an error log it
-  if (err) { console.error(err); }
-  // If there is not an error console log what port the server is running on
-  else { console.log('Server running on port %s', module.exports.NODEPORT) }
+io.on('connection', function(socket){
+  socket.broadcast.emit('user connected')
 })
+
+// Start the actual server listening on the port variable
+// app.listen(module.exports.NODEPORT, function (err) {
+//   // If there is an error log it
+//   if (err) { console.error(err); }
+//   // If there is not an error console log what port the server is running on
+//   else { console.log('Server running on port %s', module.exports.NODEPORT) }
+// })
