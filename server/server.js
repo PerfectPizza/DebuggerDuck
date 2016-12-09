@@ -152,9 +152,22 @@ app.get('/facebook/oauth', passport.authenticate('facebook', {failureRedirect: '
 // what happens with the requests
 app.use('/api', router);
 
+//Adding socket controller
 io.on('connection', function(socket){
   socket.broadcast.emit('user connected')
+  socket.on('chat', function(data){
+    console.log("chat received", data)
+    io.emit('chat'+data.orderId, data.message);
+  });
+  socket.on('status', function(data){
+    console.log("status updated", data)
+    io.emit('chat'+data.orderId, data.status);
+  });
+  // socket.on('order message', function(msg){
+  //   io.emit('order list', msg);
+  // })
 })
+
 
 // Start the actual server listening on the port variable
 // app.listen(module.exports.NODEPORT, function (err) {
