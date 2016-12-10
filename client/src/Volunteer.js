@@ -58,7 +58,7 @@ class Volunteer extends Component {
             key= {Math.random()}
             request={request}/>
           )}
-           <RequestModal changeRole={this.props.changeRole} onSubmit={this.onSubmit.bind(this)}/>
+           <RequestModal orderNumber={this.props.orderNumber} changeRole={this.props.changeRole} onSubmit={this.onSubmit.bind(this)}/>
         </div>
   );
  }

@@ -300,6 +300,7 @@ class Runner extends Component {
     }
       else if (this.state.role === 'fetcher' || this.state.role==='receiver'){
         console.log('ROLE IS :', this.state.role)
+        console.log('ORDER NUMBER is ', this.currentOrderId)
         return(
           <div>
             <StatusView
@@ -308,7 +309,7 @@ class Runner extends Component {
               time={this.time}
               location={this.location}
               orderUser={this.orderUser}
-              picture={this.picture}
+              picture={this.orderUserPicture}
               text={this.text}
               role={this.state.role}
               changeRole={this.changeRole.bind(this)}

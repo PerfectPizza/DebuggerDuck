@@ -121,12 +121,12 @@ app.use(passport.session());
 //     randomNumber=randomNumber.substring(2,randomNumber.length);
 //     res.cookie('cookieName',randomNumber, { maxAge: 900000, httpOnly: true });
 //     console.log('cookie created successfully');
-//   } 
+//   }
 //   else
 //   {
-//     // yes, cookie was already present 
+//     // yes, cookie was already present
 //     console.log('cookie exists', cookie);
-//   } 
+//   }
 //   next();
 // });
 
@@ -163,9 +163,9 @@ io.on('connection', function(socket){
     console.log("status updated", data)
     io.emit('chat'+data.orderId, data.status);
   });
-  // socket.on('order message', function(msg){
-  //   io.emit('order list', msg);
-  // })
+  socket.on('order message', function(data){
+    io.emit('order'+data.orderNumber, data.message);
+  })
 })
 
 

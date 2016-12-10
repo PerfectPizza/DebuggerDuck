@@ -22,8 +22,11 @@ import ButtonGroup from './ButtonGroup.js';
       console.log("StatusViewProps: ", props)
       this.state = {
     	orderStatus: 'open'
+      }
+      this.orderId = props.orderId;
+      this.picture = props.picture;
+      console.log(props.picture)
     }
-  }
 
   confirmClose () {
     var confirm = prompt("you closed the order. are you sure? Yes or No");
@@ -56,16 +59,23 @@ import ButtonGroup from './ButtonGroup.js';
     this.setState({messages: messages});
   }
 
+  componentDidMount(){
+    socket.on('order'+this.orderId, function(orderMessage){
+      console.log('order message for ORDER'+ this.orderId+ '   Message: ', orderMessage)
+
+    })
+  }
+
   render() {
     console.log("StatusView OrderID", this.props.orderId)
     console.log("StatusView OrderUser", this.props.orderUser)
     console.log("StatusView time", this.props.time)
     console.log("StatusView location", this.props.location)
-
     if(this.props.role === 'fetcher'){
       return (
         <div className='volunteer-div'>
-          <img className='small-profile-pic' src={this.props.picture}/>
+          <img className='small-profile-pic' src={this.picture}/>
+
           Information forthcoming about the orer you are fetching
           <button onClick={() => {this.props.changeRole(null)}}>Exit</button>
           <Progress status={this.state.orderStatus} />
@@ -76,7 +86,7 @@ import ButtonGroup from './ButtonGroup.js';
     } else if(this.props.role === 'receiver'){
  	  return (
         <div className='volunteer-div'>
-          <img className='small-profile-pic' src={this.props.picture}/>
+          <img className='small-profile-pic' src={this.picture}/>
           <Progress status={this.state.orderStatus}/>
 
 
