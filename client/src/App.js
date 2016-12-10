@@ -108,8 +108,11 @@ class Runner extends Component {
   getCurrentData() {
     axios.get('/api/volunteer')
       .then(response => {
-        console.log('Getting Current Data?', response.data.data);
-        this.setState({currentData: response.data.data});
+        var ourData = response.data.data;
+        console.log('Getting Current Data?', ourData);
+
+
+        this.setState({currentData: ourData});
       })
       .catch(error => {
         console.log('Error while getting current data: ', error);
@@ -284,7 +287,7 @@ class Runner extends Component {
         console.log('ROLE IS :', this.state.role)
         return(
           <div>
-            <StatusView username={this.state.username}picture={this.state.picture} role={this.state.role} changeRole={this.changeRole.bind(this)}/>
+            <StatusView orderId={this.state.currentData} username={this.state.username} picture={this.state.picture} role={this.state.role} changeRole={this.changeRole.bind(this)}/>
           </div>
           )
       }
