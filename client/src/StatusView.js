@@ -80,7 +80,7 @@ import ButtonGroup from './ButtonGroup.js';
           <button onClick={() => {this.props.changeRole(null)}}>Exit</button>
           <Progress status={this.state.orderStatus} orderId={this.props.orderId}/>
           <Chat messages={this.state.messages} saveMessages={this.saveMessages.bind(this)}/>
-          <ButtonGroup changeStatus={this.changeStatus.bind(this)}/>
+          <ButtonGroup orderId={this.props.orderId} changeStatus={this.changeStatus.bind(this)}/>
         </div>
       );
     } else if(this.props.role === 'receiver'){
