@@ -21,7 +21,7 @@ class RequestModal extends React.Component {
     //every time the user types a new letter, the state is changed to the current input
     this.setState({text: event.target.value});
   }
-  
+
   onSubmit (){
     this.setState({
       isOpen: false
@@ -63,15 +63,15 @@ class RequestModal extends React.Component {
           <Modal isOpen={isOpen} onRequestHide={this.hideModal.bind(this)}>
             <ModalHeader >
               <ModalClose onClick={this.hideModal.bind(this)}/>
-              
+
             </ModalHeader>
             <div className='modal-inside'>
               <div>
                 &nbsp; Name your group. &nbsp;
-                <input 
-                onChange={this.onTextChange.bind(this)} 
-                className='modal-input third-input' 
-                type="text" 
+                <input
+                onChange={this.onTextChange.bind(this)}
+                className='modal-input third-input'
+                type="text"
                 id="group-name"/>
               </div>
             </div>
