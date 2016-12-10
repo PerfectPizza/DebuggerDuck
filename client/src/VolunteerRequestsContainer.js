@@ -71,15 +71,15 @@ class VolunteerRequestContainer extends Component {
   //Although our post requests were successful, the state was only changing in app.js.
   //By creating this function, voluteerRequestContainer.js's state will also change, therefore rerendering everything in it.
 
-  //  getDataForRendering(){
-  //   return axios.get('/api/volunteer')
-  //     .then(response => {
-  //       this.setState({volunteers: response.data.data});
-  //     })
-  //     .catch(error => {
-  //       console.log('Error while getting current data: ', error);
-  //     })
-  // }
+   getDataForRendering(){
+    return axios.get('/api/volunteer')
+      .then(response => {
+        this.setState({volunteers: response.data.data});
+      })
+      .catch(error => {
+        console.log('Error while getting current data: ', error);
+      })
+  }
 
   //This function will set the state of app.js
   onSubmit() {

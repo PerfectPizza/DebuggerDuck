@@ -19,10 +19,9 @@ import ButtonGroup from './ButtonGroup.js';
   class StatusView extends Component {
     constructor(props) {
       super(props);
-      console.log("FoodStatus in StatusViewProps: ", props)
+      console.log("StatusViewProps: ", props)
       this.state = {
-    	order_progress: 'open',
-      messages: null
+    	orderStatus: 'open'
     }
   }
 
@@ -62,7 +61,7 @@ import ButtonGroup from './ButtonGroup.js';
       return (
         <div className='volunteer-div'>
           <img className='small-profile-pic' alt="volunteer picture" src={'undefined'}/>
-          <Progress status={this.state.order_progress} />
+          <Progress status={this.state.orderStatus} />
           <Chat messages={this.state.messages} saveMessages={this.saveMessages.bind(this)}/>
           <ButtonGroup changeStatus={this.changeStatus.bind(this)}/>  
         </div>
