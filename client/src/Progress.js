@@ -3,14 +3,18 @@ import React, {Component} from 'react';
 class Progress extends Component {
   constructor(props) {
     super(props);
+    }
   }
   //save to state
   render(){
-    // There's not much to this component. Technically, we could probably throw it in the app.js if we wanted to.
+    //change class between todo and done
     return (
       <div>
-    		<div className="progress-message">{this.props.status}</div>
-        <div className="progress-cigar">{this.props.status}</div>
+    		<div className="progress-container">
+          <ol className="progress-meter">
+            <li className="progress-point done">05:20 mins</li><li className="progress-point done">05:10 mins</li><li className="progress-point done">Link</li><li className="progress-point todo">Connect</li>
+          </ol>
+        </div>
       </div>
     )
   }
