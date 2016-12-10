@@ -25,12 +25,12 @@ module.exports = {
         })
     },
     loggedIn: (req, res) => {
-      // if (req.user.id) {
-      //   res.send(true);
-      // } else {
-      //   res.send(false);
-      // }
-      res.send(true)
+      if (req.user.id) {
+        res.send(true);
+      } else {
+        res.send(false);
+      }
+
     },
     logout: (req, res) => {
       req.session.destroy();
