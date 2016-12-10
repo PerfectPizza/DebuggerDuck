@@ -76,13 +76,8 @@ import ButtonGroup from './ButtonGroup.js';
         <div className='volunteer-div'>
           <img className='small-profile-pic' src={this.props.picture}/>
           {'Ari' + 'is' || 'you are'}  going to Chipotle.
-<<<<<<< HEAD
-          <Progress status={this.state.orderStatus}/> 
-          <Chat username={this.props.username}messages={this.state.messages} saveMessages={this.saveMessages.bind(this)}/>
-=======
           <Progress status={this.state.orderStatus}/>
-          <Chat messages={this.state.messages} saveMessages={this.saveMessages.bind(this)}/>
->>>>>>> passed all order data to status view
+          <Chat username={this.props.username} messages={this.state.messages} saveMessages={this.saveMessages.bind(this)}/>
         </div>
   	  );
     } else if(this.props.role === 'undefined'){
