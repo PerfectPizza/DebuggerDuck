@@ -15,7 +15,7 @@ class Chat extends Component {
     })
 
     socket.on('chat' + 34 /*!!! REPLACE WITH this.props.orderId */, function(msg) {
-      $('#messages').append($('<li>').text(msg))
+      $('#messages').append($('<li class=chat-message>').text(msg))
     })
   }
 

@@ -97,8 +97,6 @@ ol.progress-meter li.todo:before {
 	font-family: 'Poppins', sans-serif;
 	color:#4F4D4D;
 	font-size:18px;
-	background-color: #efefef	
-
 }
 body {
 	background-color: #efefef
@@ -307,6 +305,10 @@ opacity: 0.5;
 
 .chat-messages{
 	list-style-type: none
+}
+
+.chat-message{
+	background: rgba();
 }
 
 .progress-div{
