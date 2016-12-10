@@ -60,7 +60,7 @@ import ButtonGroup from './ButtonGroup.js';
     if(this.props.role === 'fetcher'){
       return (
         <div className='volunteer-div'>
-          <img className='small-profile-pic' alt="volunteer picture" src={'undefined'}/>
+          <img className='small-profile-pic' src={this.props.picture}/>
           <Progress status={this.state.orderStatus} />
           <Chat messages={this.state.messages} saveMessages={this.saveMessages.bind(this)}/>
           <ButtonGroup changeStatus={this.changeStatus.bind(this)}/>  
@@ -69,7 +69,7 @@ import ButtonGroup from './ButtonGroup.js';
     } else if(this.props.role === 'receiver'){
  	  return (
         <div className='volunteer-div'>
-          <img className='small-profile-pic' alt="receiver picture"src={'undefined'}/>
+          <img className='small-profile-pic' src={this.props.picture}/>
           {'Ari' + 'is' || 'you are'}  going to Chipotle.
           <Progress /> 
           <Chat />
