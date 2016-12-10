@@ -61,7 +61,11 @@ class VolunteerRequestContainer extends Component {
             //This maps out the volunteers in the this.state.volunteers array into the child component, volunteer
             volunteer={volunteer}
             orderNumber={volunteer.orderNumber}/>
+<<<<<<< HEAD
           )} 
+=======
+          )}
+>>>>>>> added order number to Volunteer information flow - can post and get order number from db
         <div className='center'><button className='red-button new-group' onClick={this.props.selectDifferentGroup}>Select a different group</button></div>
      </div>
     );

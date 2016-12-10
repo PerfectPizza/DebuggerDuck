@@ -39,8 +39,12 @@ class Runner extends Component {
       groups:[],
       //currentData holds all volunteers and requests.
       currentData:[],
+<<<<<<< HEAD
       role : null
       // socket:{this.socket}
+=======
+      socket:{this.socket}
+>>>>>>> added order number to Volunteer information flow - can post and get order number from db
     };
     //Binding context for functions that get passed down.
     //this.getGroups = this.getGroups.bind(this);
@@ -168,11 +172,14 @@ class Runner extends Component {
   //postVolunteer POSTS a new volunteer to the server.
     //Accepts a location, a time, and group.  Pulls username from state.
   postVolunteer(location, time, group, orderNumber) {
+<<<<<<< HEAD
     this.currentOrderId = orderNumber;
     this.time = time;
     this.location = location;
     this.orderUser = this.state.username;
     this.orderUserPicture = this.state.picture;
+=======
+>>>>>>> added order number to Volunteer information flow - can post and get order number from db
     axios.post('/api/volunteer', {data:{
       username: this.state.username,
       location: location,

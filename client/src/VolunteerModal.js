@@ -26,7 +26,11 @@ class VolunteerModal extends React.Component {
     //every time the user types a new letter, the state is changed to the current input
     this.setState({location: event.target.value});
   }
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> added order number to Volunteer information flow - can post and get order number from db
   makeAndSetOrderNumber(){
     var orderNumber = JSON.stringify(Math.random()).slice(2,17)
     return orderNumber;
