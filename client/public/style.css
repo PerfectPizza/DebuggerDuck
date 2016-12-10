@@ -102,9 +102,6 @@ body {
 	background-color: #efefef
 }
 
-.modal-dialog{
-	background-color: #efefef	
-}
 .nav-bar {
 	height:80px;
 	background-color:#CAEBF2;
@@ -126,7 +123,9 @@ body {
 	border-radius:10px;
 	border:none;
 }
-
+.fb-button:hover{
+	color:white;
+}
 .fa {
 	margin:2px,1px,1px,1px;
 	margin-right:4px;
@@ -201,6 +200,13 @@ body {
 	border:none;
 	font-size:24px;
 }
+.fb-button-big:hover, 
+.fb-button-big:active,
+.fb-button-big:visited{
+	text-decoration: none;
+	color:white;
+	cursor: pointer;
+}
 .center {
 	text-align:center;
 }
@@ -250,7 +256,6 @@ body {
 }
 
 .modal-inside{
-	background-color:#EFEFEF;
 	text-align:left;
 }
 .modal-input {
