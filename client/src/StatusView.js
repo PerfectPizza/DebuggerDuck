@@ -12,7 +12,7 @@ import ButtonGroup from './ButtonGroup.js';
     //role
     //messages?
     //order ID
-  //STATE CHANGE: 
+  //STATE CHANGE:
     //order_progress --> ButtonGroup
     //messages?
 
@@ -57,13 +57,18 @@ import ButtonGroup from './ButtonGroup.js';
   }
 
   render() {
+    console.log("StatusView OrderID", this.props.orderId)
+    console.log("StatusView OrderUser", this.props.orderUser)
+    console.log("StatusView time", this.props.time)
+    console.log("StatusView location", this.props.location)
+
     if(this.props.role === 'fetcher'){
       return (
         <div className='volunteer-div'>
           <img className='small-profile-pic' src={this.props.picture}/>
           <Progress status={this.state.orderStatus} />
           <Chat messages={this.state.messages} saveMessages={this.saveMessages.bind(this)}/>
-          <ButtonGroup changeStatus={this.changeStatus.bind(this)}/>  
+          <ButtonGroup changeStatus={this.changeStatus.bind(this)}/>
         </div>
       );
     } else if(this.props.role === 'receiver'){
@@ -71,17 +76,22 @@ import ButtonGroup from './ButtonGroup.js';
         <div className='volunteer-div'>
           <img className='small-profile-pic' src={this.props.picture}/>
           {'Ari' + 'is' || 'you are'}  going to Chipotle.
+<<<<<<< HEAD
           <Progress status={this.state.orderStatus}/> 
           <Chat username={this.props.username}messages={this.state.messages} saveMessages={this.saveMessages.bind(this)}/>
+=======
+          <Progress status={this.state.orderStatus}/>
+          <Chat messages={this.state.messages} saveMessages={this.saveMessages.bind(this)}/>
+>>>>>>> passed all order data to status view
         </div>
   	  );
     } else if(this.props.role === 'undefined'){
       return (
         <p>You didn't set your props correctly</p>
       )
-    } 
+    }
  }
- 
+
 };
 
 export default StatusView;

@@ -15,7 +15,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
-
+import io from 'socket.io-client'
 import NavBar from './NavBar.js';
 import LandingPage from './LandingPage.js';
 import Groups from './Groups.js';
@@ -39,14 +39,20 @@ class Runner extends Component {
       groups:[],
       //currentData holds all volunteers and requests.
       currentData:[],
-      role : null,
-      socket:{this.socket}
+      role : null
+      // socket:{this.socket}
     };
     //Binding context for functions that get passed down.
     //this.getGroups = this.getGroups.bind(this);
     this.getCurrentData = this.getCurrentData.bind(this);
     this.postLogin = this.postLogin.bind(this);
     this.postLogout = this.postLogout.bind(this);
+    this.currentOrderId = null;
+    this.orderUser = null;
+    this.location = null;
+    this.time = null;
+    this.requestText = null;
+    this.orderUserPicture = null;
   }
 
   ///Run functions on component load so data is available.
@@ -110,8 +116,6 @@ class Runner extends Component {
       .then(response => {
         var ourData = response.data.data;
         console.log('Getting Current Data?', ourData);
-
-
         this.setState({currentData: ourData});
       })
       .catch(error => {
@@ -164,6 +168,11 @@ class Runner extends Component {
   //postVolunteer POSTS a new volunteer to the server.
     //Accepts a location, a time, and group.  Pulls username from state.
   postVolunteer(location, time, group, orderNumber) {
+    this.currentOrderId = orderNumber;
+    this.time = time;
+    this.location = location;
+    this.orderUser = this.state.username;
+    this.orderUserPicture = this.state.picture;
     axios.post('/api/volunteer', {data:{
       username: this.state.username,
       location: location,
@@ -184,17 +193,24 @@ class Runner extends Component {
   }
 
   // postRequest sends a food request to the server.
-  // volunteerId is the mongo db record for the volunteer (in the mongo Order table.)
+  // orderId is the mongo db record for the volunteer (in the mongo Order table.)
     //text is what the user requested.
     //username for hte request is pulled from state.
 
-  postRequest(volunteerId, text) {
+  postRequest(orderNumber, text, orderUser, picture, time, location) {
+      this.orderUser = orderUser;
+      this.currentOrderId = orderNumber;
+      this.time = time;
+      this.location = location;
+      this.requestText = text;
+      this.orderUserPicture = picture;
+
       axios.post('/api/request', {data:{
       //don't remove.
-      username: this.state.username,
-      volunteerId: volunteerId,
-      picture: this.state.picture,
-      text: text,
+      username: orderUser,
+      orderId: orderId,
+      picture: picture,
+      text: text
 
       }
     })
@@ -287,7 +303,17 @@ class Runner extends Component {
         console.log('ROLE IS :', this.state.role)
         return(
           <div>
-            <StatusView orderId={this.state.currentData || null} username={this.state.username} picture={this.state.picture} role={this.state.role} changeRole={this.changeRole.bind(this)}/>
+            <StatusView
+              username={this.state.username}
+              orderId={this.currentOrderId}
+              time={this.time}
+              location={this.location}
+              orderUser={this.orderUser}
+              picture={this.picture}
+              text={this.text}
+              role={this.state.role}
+              changeRole={this.changeRole.bind(this)}
+              />
           </div>
           )
       }
