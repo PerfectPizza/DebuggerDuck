@@ -25,11 +25,13 @@ class RequestModal extends React.Component {
   onSubmit (){
     //Don't change this invocation.
     console.log('modal text?', this.state.text);
+    this.props.changeRole('receiver')
     this.props.onSubmit(this.state.text);
-    this.setState({
-      isOpen: false,
-      text: ''
-    });
+    // this.setState({
+    //   isOpen: false,
+    //   text: ''
+    // });
+    
   }
 
   openModal (){
@@ -56,6 +58,8 @@ class RequestModal extends React.Component {
       }
     };
     let {isOpen, isSubOpen} = this.state;
+
+    console.log("Request Modal Props", this.props)
     return (
         <div className='center orange'>
           <button className="red-button" onClick={this.openModal.bind(this)}>
