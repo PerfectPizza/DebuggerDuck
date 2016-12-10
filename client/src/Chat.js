@@ -6,6 +6,7 @@ class Chat extends Component {
   }
 
   componentDidMount() {
+    var username=this.props.username
 
     $('#chatSubmit').click(()=>{
       let msg = $('#messageForm').val()
@@ -15,7 +16,7 @@ class Chat extends Component {
     })
 
     socket.on('chat' + 34 /*!!! REPLACE WITH this.props.orderId */, function(msg) {
-      $('#messages').append($('<li class=chat-message>').text(msg))
+      $('#messages').append($('<li class=chat-message>').text(username+": " +msg))
     })
   }
 
