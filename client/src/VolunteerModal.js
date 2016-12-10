@@ -39,6 +39,7 @@ class VolunteerModal extends React.Component {
     this.props.postVolunteer(this.state.location, this.state.time, this.props.currentGroup, orderNumber);
     this.props.onSubmit();
     this.props.getDataForRendering();
+    this.props.changeRole('fetcher');
     this.setState({
       isOpen: false,
       time: '',

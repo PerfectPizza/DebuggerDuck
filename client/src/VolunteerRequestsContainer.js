@@ -43,7 +43,7 @@ class VolunteerRequestContainer extends Component {
         //VolunteerModal pops up when you click the Volunteer Services button
      <div className='request-container'>
         <div>
-          <VolunteerModal getDataForRendering={this.getDataForRendering.bind(this)} getCurrentData={this.props.getCurrentData} currentGroup={this.props.currentGroup} onSubmit={this.onSubmit.bind(this)} postVolunteer={this.props.postVolunteer} />
+          <VolunteerModal changeRole={this.props.changeRole} getDataForRendering={this.getDataForRendering.bind(this)} getCurrentData={this.props.getCurrentData} currentGroup={this.props.currentGroup} onSubmit={this.onSubmit.bind(this)} postVolunteer={this.props.postVolunteer} />
 
         </div>
         {this.state.volunteers.filter(volunteer => volunteer.group_id === this.props.getIdFromGroupName(this.props.currentGroup))
