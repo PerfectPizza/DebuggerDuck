@@ -60,7 +60,7 @@ class VolunteerRequestContainer extends Component {
             //This maps out the volunteers in the this.state.volunteers array into the child component, volunteer
             volunteer={volunteer}
             orderNumber={volunteer.orderNumber}/>
-          )}
+          )} 
         <div className='center'><button className='red-button new-group' onClick={this.props.selectDifferentGroup}>Select a different group</button></div>
      </div>
     );
