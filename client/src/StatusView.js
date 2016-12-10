@@ -79,13 +79,15 @@ import ButtonGroup from './ButtonGroup.js';
           <img className='small-profile-pic' src={this.props.picture}/>
           <Progress status={this.state.orderStatus}/>
 
-          <button onClick={() => {this.props.changeRole(null)}}>Exit</button>    
-          <Chat 
+
+          <button onClick={() => {this.props.changeRole(null)}}>Exit</button>
+          <Chat
             orderId={this.props.orderId}
-            username={this.props.username} 
-            messages={this.state.messages} 
+            username={this.props.username}
+            messages={this.state.messages}
             saveMessages={this.saveMessages.bind(this)}
           />
+
           Information forthcoming about your order
         </div>
   	  );

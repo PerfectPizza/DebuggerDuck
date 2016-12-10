@@ -291,7 +291,6 @@ class Runner extends Component {
                 getCurrentData={this.getCurrentData.bind(this)}
                 postVolunteer={this.postVolunteer.bind(this)}
                 postRequest={this.postRequest.bind(this)}
-                getCurrentData={this.getCurrentData.bind(this)}
                 //We pass down the selectDifferentGroup function to this component since the button is rendered there
                 selectDifferentGroup={this.selectDifferentGroup.bind(this)} />
             </div>
