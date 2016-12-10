@@ -12,6 +12,9 @@ import {
 class FetcherModal extends Component {
     constructor(props) {
       super(props);
+      this.state = {
+        requests: null
+      }
     }
     openModal (){
       this.setState({
@@ -49,7 +52,7 @@ render() {
             <div className='modal-inside'>
               {this.props.requests.map(request =>
                 //this goes through the array of requests and maps them using the child component, Request.js
-                <Request 
+                <Request
                 //I threw math.random as the key because react kept getting angry at me for making duplicate keys??
                   key= {Math.random()}
                   request={request}
@@ -65,4 +68,4 @@ render() {
     );
 
 
-  
+

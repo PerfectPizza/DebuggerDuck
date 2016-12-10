@@ -291,7 +291,6 @@ class Runner extends Component {
                 getCurrentData={this.getCurrentData.bind(this)}
                 postVolunteer={this.postVolunteer.bind(this)}
                 postRequest={this.postRequest.bind(this)}
-                getCurrentData={this.getCurrentData.bind(this)}
                 //We pass down the selectDifferentGroup function to this component since the button is rendered there
                 selectDifferentGroup={this.selectDifferentGroup.bind(this)} />
             </div>
@@ -301,6 +300,7 @@ class Runner extends Component {
     }
       else if (this.state.role === 'fetcher' || this.state.role==='receiver'){
         console.log('ROLE IS :', this.state.role)
+        console.log('ORDER NUMBER is ', this.currentOrderId)
         return(
           <div>
             <StatusView
@@ -309,7 +309,7 @@ class Runner extends Component {
               time={this.time}
               location={this.location}
               orderUser={this.orderUser}
-              picture={this.picture}
+              picture={this.orderUserPicture}
               text={this.text}
               role={this.state.role}
               changeRole={this.changeRole.bind(this)}
