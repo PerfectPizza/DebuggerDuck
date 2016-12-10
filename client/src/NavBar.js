@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import FacebookButton from './FacebookButton.js'
+import FacebookLogout from './facebooklogout.js'
 
 
 
@@ -29,15 +29,11 @@ class NavBar extends Component {
     this.props.postLogin();
 	 }
   //logout updates local state and runs postLogout, inherited from App. 
-  logOut() {
-    this.setState({loggedIn: false})
-    this.props.postLogout();
-  }
   render() { 
   		return ( 
     	<div className='nav-bar'>
-    		<FacebookButton 
-          logOut={this.logOut.bind(this)} 
+    		<FacebookLogout 
+          logOut={this.props.postLogout} 
           loggedIn={this.state.loggedIn}/>
     		<div className='karma'>Karma: {this.state.karma}</div>
         <img className='nav-pic' src={this.props.picture}/>

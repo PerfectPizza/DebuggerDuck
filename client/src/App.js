@@ -142,7 +142,8 @@ class Runner extends Component {
   //postLogout sends request to server to log out user and kill session.
     //As above, may need to be updated.
   postLogout() {
-    axios.post('/api/login')
+    'heeeyyyyyyyyy i got clickered'
+    axios.get('/api/user/logout')
       .then(response => {
         console.log('Logged out:', response);
         this.setState({loggedIn: false});
