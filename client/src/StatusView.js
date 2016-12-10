@@ -67,6 +67,7 @@ import ButtonGroup from './ButtonGroup.js';
         <div className='volunteer-div'>
           <img className='small-profile-pic' src={this.props.picture}/>
           Information forthcoming about the orer you are fetching
+          <button onClick={() => {this.props.changeRole(null)}}>Exit</button>
           <Progress status={this.state.orderStatus} />
           <Chat messages={this.state.messages} saveMessages={this.saveMessages.bind(this)}/>
           <ButtonGroup changeStatus={this.changeStatus.bind(this)}/>
@@ -77,6 +78,8 @@ import ButtonGroup from './ButtonGroup.js';
         <div className='volunteer-div'>
           <img className='small-profile-pic' src={this.props.picture}/>
           <Progress status={this.state.orderStatus}/>
+
+          <button onClick={() => {this.props.changeRole(null)}}>Exit</button>    
           <Chat 
             orderId={this.props.orderId}
             username={this.props.username} 
