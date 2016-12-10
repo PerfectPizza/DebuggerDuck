@@ -287,7 +287,7 @@ class Runner extends Component {
         console.log('ROLE IS :', this.state.role)
         return(
           <div>
-            <StatusView orderId={this.state.currentData} username={this.state.username} picture={this.state.picture} role={this.state.role} changeRole={this.changeRole.bind(this)}/>
+            <StatusView orderId={this.state.currentData || null} username={this.state.username} picture={this.state.picture} role={this.state.role} changeRole={this.changeRole.bind(this)}/>
           </div>
           )
       }
