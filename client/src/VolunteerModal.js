@@ -32,6 +32,7 @@ class VolunteerModal extends React.Component {
     console.log("On submit at the modal level")
     this.props.onSubmit();
     this.props.getDataForRendering();
+    this.props.changeRole('fetcher');
     this.setState({
       isOpen: false,
       time: '',
