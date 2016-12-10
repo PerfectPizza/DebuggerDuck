@@ -16,11 +16,12 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 
-import NavBar from './NavBar';
+import NavBar from './NavBar.js';
 import LandingPage from './LandingPage.js';
 import Groups from './Groups.js';
 import VolunteerRequestsContainer from './VolunteerRequestsContainer.js';
-import GroupModal from './GroupModal';
+import GroupModal from './GroupModal.js';
+import StatusView from './StatusView.js';
 
 let socket = io();
 //Primary component for App.
@@ -38,7 +39,12 @@ class Runner extends Component {
       groups:[],
       //currentData holds all volunteers and requests.
       currentData:[],
+<<<<<<< HEAD
       socket:{this.socket}
+=======
+      role : null
+
+>>>>>>> origin/master
     };
     //Binding context for functions that get passed down.
     //this.getGroups = this.getGroups.bind(this);
@@ -201,6 +207,10 @@ class Runner extends Component {
       })
   }
 
+  changeRole(role){
+    this.setState({role: role});
+  }
+
   //There are three possible options when we reach the home page. 
 //For each option a navbar is rendered regardless of state.
 //1. LoggedIn is false -> render the Landing page component.
@@ -209,67 +219,79 @@ class Runner extends Component {
 // (Which in turn, will render the request component(s))
 
   render() {
-    if (this.state.loggedIn===false){
-      return (
-        <div>
-          <div className='nav-bar'></div>
-          <LandingPage />
-        </div>
-        )
-    } else {
-      if (this.state.currentGroup===''){
+    if (this.state.role === 'receiver') {console.log("RECEIVER RECEIVED!")}
+    if(this.state.role === null){
+      if (this.state.loggedIn===false){
         return (
           <div>
-          <NavBar 
-          //Funnel down info into the navbar
-          loggedIn={true}
-          postLogout={this.postLogout.bind(this)}
-          postLogin={this.postLogin.bind(this)}
-          username={this.state.username} 
-          picture={this.state.picture}/>
-          <div className='greeting'> Hi, {this.state.username}.</div>
-          <div className='group-select'>Please select a group.</div>
-            {this.state.groups.map(group =>
-              //This maps out all the groups into a list. 
-              <Groups 
-              //If I don't put a key in, react gets angry with me.
-              selectGroup={this.selectGroup.bind(this)}
-              key={Math.random()}
-              group={group.name} />
-            )}
-            <div className='center'>  
-              <GroupModal postGroup={this.postGroup.bind(this)}/>
-            </div>
+            <div className='nav-bar'></div>
+            <LandingPage />
           </div>
           )
       } else {
-        return ( 
-          <div>
+        if (this.state.currentGroup===''){
+          return (
+            <div>
             <NavBar 
-            //Again, funneling info to the navbar.
-              //Also passing in login and logout functions.
-              loggedIn={true}
-              postLogout={this.postLogout.bind(this)}
-              postLogin={this.postLogin.bind(this)}
-              username={this.state.username} 
-              picture={this.state.picture} />
-            <VolunteerRequestsContainer 
-            //This also needs to be funneled info
-              getIdFromGroupName={this.getIdFromGroupName.bind(this)}
-              username={this.state.username} 
-              picture={this.state.picture}
-              currentGroup={this.state.currentGroup}
-              currentData={this.state.currentData}
-              getCurrentData={this.getCurrentData.bind(this)}
-              postVolunteer={this.postVolunteer.bind(this)}
-              postRequest={this.postRequest.bind(this)}
-              getCurrentData={this.getCurrentData.bind(this)}
-              //We pass down the selectDifferentGroup function to this component since the button is rendered there
-              selectDifferentGroup={this.selectDifferentGroup.bind(this)} />
+            //Funnel down info into the navbar
+            loggedIn={true}
+            postLogout={this.postLogout.bind(this)}
+            postLogin={this.postLogin.bind(this)}
+            username={this.state.username} 
+            picture={this.state.picture}/>
+            <div className='greeting'> Hi, {this.state.username}.</div>
+            <div className='group-select'>Please select a group.</div>
+              {this.state.groups.map(group =>
+                //This maps out all the groups into a list. 
+                <Groups 
+                //If I don't put a key in, react gets angry with me.
+                selectGroup={this.selectGroup.bind(this)}
+                key={Math.random()}
+                group={group.name} />
+              )}
+              <div className='center'>  
+                <GroupModal postGroup={this.postGroup.bind(this)}/>
+              </div>
+            </div>
+            )
+        } else {
+          return ( 
+            <div>
+              <NavBar 
+              //Again, funneling info to the navbar.
+                //Also passing in login and logout functions.
+                loggedIn={true}
+                postLogout={this.postLogout.bind(this)}
+                postLogin={this.postLogin.bind(this)}
+                username={this.state.username} 
+                picture={this.state.picture} />
+              <VolunteerRequestsContainer 
+              //This also needs to be funneled info
+                changeRole={this.changeRole.bind(this)}
+                getIdFromGroupName={this.getIdFromGroupName.bind(this)}
+                username={this.state.username} 
+                picture={this.state.picture}
+                currentGroup={this.state.currentGroup}
+                currentData={this.state.currentData}
+                getCurrentData={this.getCurrentData.bind(this)}
+                postVolunteer={this.postVolunteer.bind(this)}
+                postRequest={this.postRequest.bind(this)}
+                getCurrentData={this.getCurrentData.bind(this)}
+                //We pass down the selectDifferentGroup function to this component since the button is rendered there
+                selectDifferentGroup={this.selectDifferentGroup.bind(this)} />
+            </div>
+            )
+          }
+      }  
+    }
+      else if (this.state.role === 'fetcher' || this.state.role==='receiver'){
+        console.log('ROLE IS :', this.state.role)
+        return(
+          <div>
+            <StatusView role={this.state.role} changeRole={this.changeRole.bind(this)}/>
           </div>
           )
-        }
-    }  
+      } 
   }   
 };
 

@@ -39,7 +39,7 @@ class Volunteer extends Component {
 
 
   render() {
-  	return ( 
+    return ( 
         <div className='volunteer-div'>
           <img className='small-profile-pic' src={this.props.volunteer.picture}/>
           {this.props.volunteer.order_user} is going to {this.props.volunteer.location} at {this.props.volunteer.time}.
@@ -51,7 +51,7 @@ class Volunteer extends Component {
             key= {Math.random()}
             request={request}/>
           )}
-           <RequestModal onSubmit={this.onSubmit.bind(this)}/>
+           <RequestModal changeRole={this.props.changeRole} onSubmit={this.onSubmit.bind(this)}/>
         </div>
   );
  }
