@@ -3,7 +3,7 @@
 //It funnels down user data into its child components.
 //The hierarchy is described below.
 
-//                             App
+//           _________________App_______
 //          /             /     |       \
 //  NavBar    LandingPage     Groups    VolunteerRequestContainer
 //       \     /                |            |              |
@@ -22,6 +22,7 @@ import Groups from './Groups.js';
 import VolunteerRequestsContainer from './VolunteerRequestsContainer.js';
 import GroupModal from './GroupModal';
 
+let socket = io();
 //Primary component for App.
 class Runner extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class Runner extends Component {
       groups:[],
       //currentData holds all volunteers and requests.
       currentData:[],
-
+      socket:{this.socket}
     };
     //Binding context for functions that get passed down.
     //this.getGroups = this.getGroups.bind(this);
@@ -51,6 +52,10 @@ class Runner extends Component {
    this.postLogin();
    this.getGroups();
    this.getCurrentData();
+   socket.emit('app mounted', 'app mounted');
+   socket.on('app mounted', function(msg){
+    console.log('app mounted --- msg: ', msg)
+   })
   }
 
 //Returns the mongo id for a given group name.
@@ -153,13 +158,14 @@ class Runner extends Component {
 
   //postVolunteer POSTS a new volunteer to the server.
     //Accepts a location, a time, and group.  Pulls username from state.
-  postVolunteer(location, time, group) {
+  postVolunteer(location, time, group, orderNumber) {
     axios.post('/api/volunteer', {data:{
       username: this.state.username,
       location: location,
       time:  time,
       picture: this.state.picture,
-      groupId: this.getIdFromGroupName(group)
+      groupId: this.getIdFromGroupName(group),
+      orderNumber: orderNumber
       }
     })
     .then(response => {
