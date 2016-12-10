@@ -10,12 +10,12 @@ class Chat extends Component {
 
     $('#chatSubmit').click(()=>{
       let msg = $('#messageForm').val()
-      socket.emit('chat', {message: msg, orderId: 34 /*!!!!! REPLACE WITH this.props.orderId */})
+      socket.emit('chat', {message: msg, orderId: this.props.orderId })
       $('#messageForm').val('')
       return false;
     })
 
-    socket.on('chat' + 34 /*!!! REPLACE WITH this.props.orderId */, function(msg) {
+    socket.on('chat' + this.props.orderId, function(msg) {
       $('#messages').append($('<li class=chat-message>').text(username+": " +msg))
     })
   }
@@ -27,9 +27,6 @@ class Chat extends Component {
         <div>
           <div className="chat-window">
         		<ul id="messages" className="chat-messages">
-              {/*this.props.messages.map(message =>
-                $('#messages').append('<li>'+message+'</li>');
-              )*/}
             </ul>
           </div>
         	<form action="" className="chat-form">
