@@ -102,7 +102,8 @@ module.exports = {
         time: req.body.data.time,
         picture: req.body.data.picture,
         group_id: req.body.data.groupId,
-        requests: req.body.data.requests
+        requests: req.body.data.requests,
+        orderNumber: req.body.data.orderNumber
       }).save()
       .then((data) => {
         res.status(201).send(data);
@@ -119,7 +120,7 @@ module.exports = {
     post: (req, res) => {
 
       db.Order.findOneAndUpdate(
-         {_id:req.body.data.volunteerId},
+         {orderNumber:req.body.data.orderId},
          {$push: { requests:{user_id: req.body.data.username, picture: req.body.data.picture, text:req.body.data.text} } }
         )
       .then((data) => {
@@ -132,13 +133,13 @@ module.exports = {
       //console.log('Request POST', req);
 
    }
-}, 
+},
 
   logout: {
     get: (req, res) => {
-      res.sendStatus(200); 
+      res.sendStatus(200);
 
      }
-   },  
-  
-}  
+   },
+
+}

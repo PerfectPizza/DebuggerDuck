@@ -15,7 +15,7 @@ class VolunteerModal extends React.Component {
     this.state ={
       isOpen: false,
       time: '',
-      location: '',
+      location: ''
     };
   }
     onTimeChange(event) {
@@ -26,13 +26,20 @@ class VolunteerModal extends React.Component {
     //every time the user types a new letter, the state is changed to the current input
     this.setState({location: event.target.value});
   }
-  
+
+  makeAndSetOrderNumber(){
+    var orderNumber = JSON.stringify(Math.random()).slice(2,17)
+    return orderNumber;
+  }
+
   onSubmit (){
-    this.props.postVolunteer(this.state.location, this.state.time, this.props.currentGroup);
+    //set room number and track via props in each volunteer box
+    var orderNumber = this.makeAndSetOrderNumber()
     console.log("On submit at the modal level")
+    this.props.changeRole('fetcher');
+    this.props.postVolunteer(this.state.location, this.state.time, this.props.currentGroup, orderNumber);
     this.props.onSubmit();
     this.props.getDataForRendering();
-    this.props.changeRole('fetcher');
     this.setState({
       isOpen: false,
       time: '',
@@ -73,23 +80,23 @@ class VolunteerModal extends React.Component {
           <Modal isOpen={isOpen} onRequestHide={this.hideModal.bind(this)}>
             <ModalHeader >
               <ModalClose onClick={this.hideModal.bind(this)}/>
-              
+
             </ModalHeader>
             <div className='modal-inside'>
               <div>
                 &nbsp; Where are you going? &nbsp;
-                <input 
-                onChange={this.onLocationChange.bind(this)} 
-                className='modal-input' 
-                type="text" 
+                <input
+                onChange={this.onLocationChange.bind(this)}
+                className='modal-input'
+                type="text"
                 id="location"/>
               </div>
               <div>
                 &nbsp; What time? &nbsp;
-                <input 
-                onChange={this.onTimeChange.bind(this)} 
-                className='modal-input second-input' 
-                type="text" 
+                <input
+                onChange={this.onTimeChange.bind(this)}
+                className='modal-input second-input'
+                type="text"
                 id="time"/>
               </div>
             </div>
