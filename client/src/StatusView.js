@@ -72,7 +72,7 @@ import ButtonGroup from './ButtonGroup.js';
           <img className='small-profile-pic' src={this.props.picture}/>
           {'Ari' + 'is' || 'you are'}  going to Chipotle.
           <Progress status={this.state.orderStatus}/> 
-          <Chat messages={this.state.messages} saveMessages={this.saveMessages.bind(this)}/>
+          <Chat username={this.props.username}messages={this.state.messages} saveMessages={this.saveMessages.bind(this)}/>
         </div>
   	  );
     } else if(this.props.role === 'undefined'){
