@@ -37,6 +37,7 @@ class Runner extends Component {
       groups:[],
       //currentData holds all volunteers and requests.
       currentData:[],
+      role : null
 
     };
     //Binding context for functions that get passed down.
@@ -195,6 +196,10 @@ class Runner extends Component {
       })
   }
 
+  changeRole(role){
+    this.setState({role: role});
+  }
+
   //There are three possible options when we reach the home page. 
 //For each option a navbar is rendered regardless of state.
 //1. LoggedIn is false -> render the Landing page component.
@@ -203,6 +208,7 @@ class Runner extends Component {
 // (Which in turn, will render the request component(s))
 
   render() {
+    if (this.state.role === 'receiver') {console.log("RECEIVER RECEIVED!")}
     if (this.state.loggedIn===false){
       return (
         <div>
@@ -249,6 +255,7 @@ class Runner extends Component {
               picture={this.state.picture} />
             <VolunteerRequestsContainer 
             //This also needs to be funneled info
+              changeRole={this.changeRole.bind(this)}
               getIdFromGroupName={this.getIdFromGroupName.bind(this)}
               username={this.state.username} 
               picture={this.state.picture}

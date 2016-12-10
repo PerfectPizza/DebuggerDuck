@@ -51,6 +51,7 @@ class VolunteerRequestContainer extends Component {
             //Render one Volunteer component for each current volunteer in a given group.
             <Volunteer 
             //I put math.random because react got angry at me
+            changeRole={this.props.changeRole}
             postRequest={this.props.postRequest}
             key={Math.random()}
             username={volunteer.username}
@@ -82,10 +83,10 @@ class VolunteerRequestContainer extends Component {
 
   //This function will set the state of app.js
   onSubmit() {
-  	this.props.getCurrentData();
+    this.props.getCurrentData();
 
   }
-  	
+    
 };
 
 export default VolunteerRequestContainer;
