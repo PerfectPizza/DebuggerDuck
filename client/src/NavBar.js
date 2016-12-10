@@ -30,8 +30,6 @@ class NavBar extends Component {
 	 }
   //logout updates local state and runs postLogout, inherited from App. 
   logOut() {
-    document.cookie = 'connect.sid' + 
-    '=; expires=Thu, 01-Jan-70 00:00:01 GMT;';
     this.setState({loggedIn: false})
     this.props.postLogout();
   }

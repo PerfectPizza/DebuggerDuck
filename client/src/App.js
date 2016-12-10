@@ -14,12 +14,13 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+
+
 import NavBar from './NavBar';
 import LandingPage from './LandingPage.js';
 import Groups from './Groups.js';
 import VolunteerRequestsContainer from './VolunteerRequestsContainer.js';
 import GroupModal from './GroupModal';
-import StatusView from './StatusView';
 
 //Primary component for App.
 class Runner extends Component {
@@ -36,26 +37,20 @@ class Runner extends Component {
       groups:[],
       //currentData holds all volunteers and requests.
       currentData:[],
-      role : 'fetcher',
-      //ROLE: UNDEFINED, FETCHER, RECEIVER -> VIEW
-        //UNDEFINED: CURRENT FLOW ONLY
-        //FETCHER: FETCHER VIEW ONLY 
-        //RECEIVER: RECEIVER VIEW ONLY
-      //PASS DOWN ROLE SETSTATE TO ALL ACTIONS THAT CHANGE THIS STATUS
 
     };
     //Binding context for functions that get passed down.
     //this.getGroups = this.getGroups.bind(this);
-    this.getCurrentData = this.getCurrentData.bind(this); //
+    this.getCurrentData = this.getCurrentData.bind(this);
     this.postLogin = this.postLogin.bind(this);
     this.postLogout = this.postLogout.bind(this);
   }
 
   ///Run functions on component load so data is available.
   componentDidMount() {
-   this.postLogin(); //LOOKS UP USER, RETURNS 200 & CHANGE STATE TO LOGGED IN IF FOUND
-   this.getGroups(); //LOOK UP ALL GROUPS IN DB SEND BACK all groups in {data: [{group}, {group}]}
-   this.getCurrentData(); //LOOK UP ALL ORDERS IN DB SEND BACK all orders in data: [{order}, {order}]
+   this.postLogin();
+   this.getGroups();
+   this.getCurrentData();
   }
 
 //Returns the mongo id for a given group name.
@@ -72,7 +67,6 @@ class Runner extends Component {
   selectGroup(name){
     this.setState({currentGroup: name});
   }
-
   selectDifferentGroup(){
     this.setState({currentGroup:''});
     //this rerenders the app to go back to option 2 (mentioned above)
@@ -91,7 +85,7 @@ class Runner extends Component {
   }
 
 //Gets full list of available groups and updates state.
-  getGroups(){ 
+  getGroups(){
     axios.get('/api/group')
       .then( response => {
         this.setState( {groups:response.data.data} );
@@ -102,8 +96,8 @@ class Runner extends Component {
     })
   }
 
-  //Gets all volunteers for today, and all associated requests.
-  //updates currentData in state, which is then passed to VolunteerRequest Container.
+  // //Gets all volunteers for today, and all associated requests.
+  //   //updates currentData in state, which is then passed to VolunteerRequest Container.
   getCurrentData() {
     axios.get('/api/volunteer')
       .then(response => {
@@ -116,7 +110,6 @@ class Runner extends Component {
   }
 
 //Triggers FB login, then retrieves user info from DB/FB.
-//INCORRECT: FETCHES DATA FROM THE DB THERE IS NO LOGIN TRIGGER
   getUserData(){
     axios.get('/api/user')
       .then(response => {
@@ -132,7 +125,6 @@ class Runner extends Component {
   }
 
 //Checks server to confirm if user is already logged in.
-//INCORRECT: RES.SEND TRUE EVERYTIME
   postLogin() {
     axios.get('/api/user/loggedin')
       .then(response => {
@@ -146,7 +138,7 @@ class Runner extends Component {
   }
 
   //postLogout sends request to server to log out user and kill session.
-  //As above, may need to be updated.
+    //As above, may need to be updated.
   postLogout() {
     axios.post('/api/login')
       .then(response => {
@@ -167,7 +159,7 @@ class Runner extends Component {
       location: location,
       time:  time,
       picture: this.state.picture,
-      groupId: this.getIdFromGroupName(group) //CREATE A GROUP IF THERE ISN'T ONE
+      groupId: this.getIdFromGroupName(group)
       }
     })
     .then(response => {
@@ -203,9 +195,6 @@ class Runner extends Component {
       })
   }
 
-  changeRole(roll){
-    this.setState({roll: roll});
-  }
   //There are three possible options when we reach the home page. 
 //For each option a navbar is rendered regardless of state.
 //1. LoggedIn is false -> render the Landing page component.
@@ -214,49 +203,69 @@ class Runner extends Component {
 // (Which in turn, will render the request component(s))
 
   render() {
-    if(this.state.role === 'undecided'){
-      if (this.state.loggedIn===false){
+    if (this.state.loggedIn===false){
+      return (
+        <div>
+          <div className='nav-bar'></div>
+          <LandingPage />
+        </div>
+        )
+    } else {
+      if (this.state.currentGroup===''){
         return (
           <div>
-            <div className='nav-bar'></div>
-            <LandingPage />
+          <NavBar 
+          //Funnel down info into the navbar
+          loggedIn={true}
+          postLogout={this.postLogout.bind(this)}
+          postLogin={this.postLogin.bind(this)}
+          username={this.state.username} 
+          picture={this.state.picture}/>
+          <div className='greeting'> Hi, {this.state.username}.</div>
+          <div className='group-select'>Please select a group.</div>
+            {this.state.groups.map(group =>
+              //This maps out all the groups into a list. 
+              <Groups 
+              //If I don't put a key in, react gets angry with me.
+              selectGroup={this.selectGroup.bind(this)}
+              key={Math.random()}
+              group={group.name} />
+            )}
+            <div className='center'>  
+              <GroupModal postGroup={this.postGroup.bind(this)}/>
+            </div>
           </div>
           )
       } else {
-          return (
-            <div>
-            <NavBar 
-            //Funnel down info into the navbar
-            loggedIn={true}
-            postLogout={this.postLogout.bind(this)}
-            postLogin={this.postLogin.bind(this)}
-            username={this.state.username} 
-            picture={this.state.picture}/>
-            <div className='greeting'> Hi, {this.state.username}.</div>
-            <div className='group-select'>Please select a group.</div>
-              {this.state.groups.map(group =>
-                //This maps out all the groups into a list. 
-                <Groups 
-                  //If I don't put a key in, react gets angry with me.
-                  selectGroup={this.selectGroup.bind(this)}
-                  key={Math.random()}
-                  group={group.name} 
-                />
-              )}
-              <div className='center'>  
-                <GroupModal postGroup={this.postGroup.bind(this)}/>
-              </div>
-            </div>
-            )
-        } 
-      }
-      else if (this.state.role === 'fetcher' || this.state.role==='receiver'){
-        return(
+        return ( 
           <div>
-            <StatusView role={this.state.role} changeRole={this.changeRole.bind(this)}/>
+            <NavBar 
+            //Again, funneling info to the navbar.
+              //Also passing in login and logout functions.
+              loggedIn={true}
+              postLogout={this.postLogout.bind(this)}
+              postLogin={this.postLogin.bind(this)}
+              username={this.state.username} 
+              picture={this.state.picture} />
+            <VolunteerRequestsContainer 
+            //This also needs to be funneled info
+              getIdFromGroupName={this.getIdFromGroupName.bind(this)}
+              username={this.state.username} 
+              picture={this.state.picture}
+              currentGroup={this.state.currentGroup}
+              currentData={this.state.currentData}
+              getCurrentData={this.getCurrentData.bind(this)}
+              postVolunteer={this.postVolunteer.bind(this)}
+              postRequest={this.postRequest.bind(this)}
+              getCurrentData={this.getCurrentData.bind(this)}
+              //We pass down the selectDifferentGroup function to this component since the button is rendered there
+              selectDifferentGroup={this.selectDifferentGroup.bind(this)} />
           </div>
           )
-      } 
-  }
-}
+        }
+    }  
+  }   
+};
+
+
 export default Runner;
