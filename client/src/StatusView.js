@@ -75,9 +75,8 @@ import ButtonGroup from './ButtonGroup.js';
       return (
         <div className='volunteer-div'>
           <img className='small-profile-pic' src={this.picture}/>
-
-          Information forthcoming about the orer you are fetching
-          <button onClick={() => {this.props.changeRole(null)}}>Exit</button>
+          <span>Thanks for heading to {this.props.location}!</span>
+          <button className="exit" onClick={() => {this.props.changeRole(null)}}>X</button>
           <Progress status={this.state.orderStatus} orderId={this.props.orderId}/>
           <Chat messages={this.state.messages} saveMessages={this.saveMessages.bind(this)}/>
           <ButtonGroup orderId={this.props.orderId} changeStatus={this.changeStatus.bind(this)}/>
@@ -88,17 +87,14 @@ import ButtonGroup from './ButtonGroup.js';
         <div className='volunteer-div'>
           <img className='small-profile-pic' src={this.picture}/>
           <Progress status={this.state.orderStatus} orderId={this.props.orderId}/>
-
-
-          <button onClick={() => {this.props.changeRole(null)}}>Exit</button>
+          <button className="exit" onClick={() => {this.props.changeRole(null)}}>X</button>
           <Chat
             orderId={this.props.orderId}
             username={this.props.username}
             messages={this.state.messages}
             saveMessages={this.saveMessages.bind(this)}
           />
-
-          Information forthcoming about your order
+          <span id="order">Your Order: {this.props.text}</span>
         </div>
   	  );
     } else if(this.props.role === 'undefined'){
