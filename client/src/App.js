@@ -1,4 +1,4 @@
-//App.js is the top component. It stores all the main data within its state. 
+//App.js is the top component. It stores all the main data within its state.
 //It renders 3 different views based on its state (described in detail below).
 //It funnels down user data into its child components.
 //The hierarchy is described below.
@@ -39,12 +39,8 @@ class Runner extends Component {
       groups:[],
       //currentData holds all volunteers and requests.
       currentData:[],
-<<<<<<< HEAD
       socket:{this.socket}
-=======
       role : null
-
->>>>>>> origin/master
     };
     //Binding context for functions that get passed down.
     //this.getGroups = this.getGroups.bind(this);
@@ -81,7 +77,7 @@ class Runner extends Component {
   selectDifferentGroup(){
     this.setState({currentGroup:''});
     //this rerenders the app to go back to option 2 (mentioned above)
-  }  
+  }
 
 //Adds a new group to DB.
   postGroup(groupName){
@@ -188,13 +184,13 @@ class Runner extends Component {
   // volunteerId is the mongo db record for the volunteer (in the mongo Order table.)
     //text is what the user requested.
     //username for hte request is pulled from state.
-    
+
   postRequest(volunteerId, text) {
       axios.post('/api/request', {data:{
-      //don't remove.  
+      //don't remove.
       username: this.state.username,
       volunteerId: volunteerId,
-      picture: this.state.picture, 
+      picture: this.state.picture,
       text: text,
 
       }
@@ -211,7 +207,7 @@ class Runner extends Component {
     this.setState({role: role});
   }
 
-  //There are three possible options when we reach the home page. 
+  //There are three possible options when we reach the home page.
 //For each option a navbar is rendered regardless of state.
 //1. LoggedIn is false -> render the Landing page component.
 //2. LoggedIn is true but group chosen is false -> render the groups component.
@@ -232,44 +228,44 @@ class Runner extends Component {
         if (this.state.currentGroup===''){
           return (
             <div>
-            <NavBar 
+            <NavBar
             //Funnel down info into the navbar
             loggedIn={true}
             postLogout={this.postLogout.bind(this)}
             postLogin={this.postLogin.bind(this)}
-            username={this.state.username} 
+            username={this.state.username}
             picture={this.state.picture}/>
             <div className='greeting'> Hi, {this.state.username}.</div>
             <div className='group-select'>Please select a group.</div>
               {this.state.groups.map(group =>
-                //This maps out all the groups into a list. 
-                <Groups 
+                //This maps out all the groups into a list.
+                <Groups
                 //If I don't put a key in, react gets angry with me.
                 selectGroup={this.selectGroup.bind(this)}
                 key={Math.random()}
                 group={group.name} />
               )}
-              <div className='center'>  
+              <div className='center'>
                 <GroupModal postGroup={this.postGroup.bind(this)}/>
               </div>
             </div>
             )
         } else {
-          return ( 
+          return (
             <div>
-              <NavBar 
+              <NavBar
               //Again, funneling info to the navbar.
                 //Also passing in login and logout functions.
                 loggedIn={true}
                 postLogout={this.postLogout.bind(this)}
                 postLogin={this.postLogin.bind(this)}
-                username={this.state.username} 
+                username={this.state.username}
                 picture={this.state.picture} />
-              <VolunteerRequestsContainer 
+              <VolunteerRequestsContainer
               //This also needs to be funneled info
                 changeRole={this.changeRole.bind(this)}
                 getIdFromGroupName={this.getIdFromGroupName.bind(this)}
-                username={this.state.username} 
+                username={this.state.username}
                 picture={this.state.picture}
                 currentGroup={this.state.currentGroup}
                 currentData={this.state.currentData}
@@ -282,7 +278,7 @@ class Runner extends Component {
             </div>
             )
           }
-      }  
+      }
     }
       else if (this.state.role === 'fetcher' || this.state.role==='receiver'){
         console.log('ROLE IS :', this.state.role)
@@ -291,8 +287,8 @@ class Runner extends Component {
             <StatusView role={this.state.role} changeRole={this.changeRole.bind(this)}/>
           </div>
           )
-      } 
-  }   
+      }
+  }
 };
 
 
