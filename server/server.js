@@ -2,7 +2,11 @@
 const path = require('path');
 const express = require('express');
 const app = express();
-const server = app.listen(4040);
+
+let NODEPORT = process.env.PORT || 4040
+
+
+const server = app.listen(NODEPORT);
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const router = require('./util/router.js');
