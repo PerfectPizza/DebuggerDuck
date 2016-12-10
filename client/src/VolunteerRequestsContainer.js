@@ -31,7 +31,7 @@ class VolunteerRequestContainer extends Component {
       return(
         <div> 
           <div>
-            <VolunteerModal getDataForRendering={this.getDataForRendering.bind(this)} getCurrentData={this.props.getCurrentData} currentGroup={this.props.currentGroup} onSubmit={this.onSubmit.bind(this)} postVolunteer={this.props.postVolunteer} />
+            <VolunteerModal changeRole={this.props.changeRole}getDataForRendering={this.getDataForRendering.bind(this)} getCurrentData={this.props.getCurrentData} currentGroup={this.props.currentGroup} onSubmit={this.onSubmit.bind(this)} postVolunteer={this.props.postVolunteer} />
           </div>
           <div className='no-requests center'>No one has volunteered to grab food yet. Why don't you go first?</div>
           <div className='center'><button className='red-button new-group' onClick={this.props.selectDifferentGroup}>Select a different group</button></div>

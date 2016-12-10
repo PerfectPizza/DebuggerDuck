@@ -291,22 +291,30 @@ opacity: 0.5;
 
 .chat-window{
 	height:200px;
-	width:200px%;
+	border-radius: 20px;
 	border:1px solid black;
 	background: rgba(255,255,255,.75);
 	overflow:auto;
 	position: relative;
-	margin-bottom: 40px;
+	margin-bottom: 30px;
 }
 
 .chat-form{
-	position: absolute;
-	bottom: 0;
+	position: inherit;
+	display: inline-block;
+	float: left;
+	margin-right: 20%;
+	bottom: 0
+}
+
+#messageForm{
+	border-radius: 5px;
 }
 
 #chat-submit,
 .chat-button{
-	background: rgba(93, 175, 233, 1);
+	background: #CAEBF2;
+	border-radius: 5px;
 }
 
 .chat-messages{
@@ -320,3 +328,27 @@ opacity: 0.5;
 .progress-div{
 	background-color:#FFC78F;
 }
+
+.button-group{
+	display:inline-block;
+	position: relative;
+}
+#status1{
+	padding: 5px;
+	background: #ff3b3f;
+}
+#status2{
+	padding: 5px;
+	background: #CAEBF2; 
+	margin-left: 5px;
+	margin-right: 5px;
+}
+#status3{
+	padding: 5px;
+	background: #ff3b3f;
+}
+
+.btn-group button{
+	border-radius: 10px;
+}
+
