@@ -39,7 +39,7 @@ class Runner extends Component {
       groups:[],
       //currentData holds all volunteers and requests.
       currentData:[],
-      role : null
+      role : null,
       socket:{this.socket}
     };
     //Binding context for functions that get passed down.
