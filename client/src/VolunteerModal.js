@@ -15,7 +15,7 @@ class VolunteerModal extends React.Component {
     this.state ={
       isOpen: false,
       time: '',
-      location: '',
+      location: ''
     };
   }
     onTimeChange(event) {
@@ -27,9 +27,16 @@ class VolunteerModal extends React.Component {
     this.setState({location: event.target.value});
   }
   
+  makeAndSetOrderNumber(){
+    var orderNumber = JSON.stringify(Math.random()).slice(2,17)
+    return orderNumber;
+  }
+
   onSubmit (){
-    this.props.postVolunteer(this.state.location, this.state.time, this.props.currentGroup);
+    //set room number and track via props in each volunteer box
+    var orderNumber = this.makeAndSetOrderNumber()
     console.log("On submit at the modal level")
+    this.props.postVolunteer(this.state.location, this.state.time, this.props.currentGroup, orderNumber);
     this.props.onSubmit();
     this.props.getDataForRendering();
     this.props.changeRole('fetcher');
