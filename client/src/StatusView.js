@@ -78,7 +78,7 @@ import ButtonGroup from './ButtonGroup.js';
 
           Information forthcoming about the orer you are fetching
           <button onClick={() => {this.props.changeRole(null)}}>Exit</button>
-          <Progress status={this.state.orderStatus} />
+          <Progress status={this.state.orderStatus} orderId={this.props.orderId}/>
           <Chat messages={this.state.messages} saveMessages={this.saveMessages.bind(this)}/>
           <ButtonGroup changeStatus={this.changeStatus.bind(this)}/>
         </div>
@@ -87,7 +87,7 @@ import ButtonGroup from './ButtonGroup.js';
  	  return (
         <div className='volunteer-div'>
           <img className='small-profile-pic' src={this.picture}/>
-          <Progress status={this.state.orderStatus}/>
+          <Progress status={this.state.orderStatus} orderId={this.props.orderId}/>
 
 
           <button onClick={() => {this.props.changeRole(null)}}>Exit</button>
