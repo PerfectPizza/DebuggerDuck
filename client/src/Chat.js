@@ -15,7 +15,7 @@ class Chat extends Component {
     })
 
     socket.on('chat' + 34 /*!!! REPLACE WITH this.props.orderId */, function(msg) {
-      $('#messages').append($('<li>').text(msg))
+      $('#messages').append($('<li class=chat-message>').text(msg))
     })
   }
 
@@ -24,13 +24,13 @@ class Chat extends Component {
       // There's not much to this component. Technically, we could probably throw it in the app.js if we wanted to.
       return (
         <div className="chat-window">
-      		<ul id="messages">
+      		<ul id="messages" className="chat-messages">
             {/*this.props.messages.map(message =>
               $('#messages').append('<li>'+message+'</li>');
             )*/}
           </ul>
-      		<form action="">
-      		  <input id="messageForm" autoComplete="off" /><button id="chatSubmit">Send</button>
+      		<form action="" className="chat-form">
+      		  <input id="messageForm" autoComplete="off" /><button className="chat-button"id="chatSubmit">Send</button>
       		</form>
         </div>
       )
