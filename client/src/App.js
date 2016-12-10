@@ -310,7 +310,7 @@ class Runner extends Component {
               location={this.location}
               orderUser={this.orderUser}
               picture={this.orderUserPicture}
-              text={this.text}
+              text={this.requestText}
               role={this.state.role}
               changeRole={this.changeRole.bind(this)}
               />

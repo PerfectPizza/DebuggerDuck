@@ -200,7 +200,7 @@ body {
 	border:none;
 	font-size:24px;
 }
-.fb-button-big:hover, 
+.fb-button-big:hover,
 .fb-button-big:active,
 .fb-button-big:visited{
 	text-decoration: none;
@@ -339,7 +339,7 @@ opacity: 0.5;
 }
 #status2{
 	padding: 5px;
-	background: #CAEBF2; 
+	background: #CAEBF2;
 	margin-left: 5px;
 	margin-right: 5px;
 }
@@ -352,3 +352,16 @@ opacity: 0.5;
 	border-radius: 10px;
 }
 
+.exit{
+  margin: 5px;
+  color: #FFC78F;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 1px solid red;
+  background: #ff3b3f;
+  position: absolute;
+  top:0;
+  right:0;
+  display: inline-block;
+}
