@@ -14,12 +14,11 @@ class Volunteer extends Component {
       username: this.props.username,
       picture: this.props.picture,
       //we set text as '' because nothing has been entered yet.
-      text:'', //THIS IS WHERE TEXT CAN BE UPDATED TO MAKE GREY TEXT ON RUNNER PAGE
+      text:'',
       //requests is an array of stuff obtained from the database. 
       //It can be added to by the user by typing into the inputs and submitting.
       requests:this.props.volunteer.requests,
       count:0
-
     };
   }
   onTextChange(event) {
@@ -31,7 +30,7 @@ class Volunteer extends Component {
   //run getDataforRendering to update App (somewhat ugly, last-minute hack).
   //update existing requests with new data from props.
   onSubmit(text){
-    // console.log('Text?', text, "volunteer id", this.props.volunteer._id);
+    //console.log('Text?', text, "volunteer id", this.props.volunteer._id);
     this.props.postRequest(this.props.volunteer._id, text);
     this.setState({text:''});
     this.props.getDataForRendering();
@@ -40,13 +39,11 @@ class Volunteer extends Component {
 
 
   render() {
-    //THIS IS A WINDOW THAT SHOWS THE STATUS OF THE GROUP REQUESTS --> BLANK IS GETTING BLANK AT BLANK
-                                                                // --> BLANK WANTS BLANK
   	return ( 
         <div className='volunteer-div'>
           <img className='small-profile-pic' src={this.props.volunteer.picture}/>
           {this.props.volunteer.order_user} is going to {this.props.volunteer.location} at {this.props.volunteer.time}.
-          
+        
         {this.state.requests.map(request =>
           //this goes through the array of requests and maps them using the child component, Request.js
           <Request 

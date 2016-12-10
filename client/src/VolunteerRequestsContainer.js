@@ -58,8 +58,7 @@ class VolunteerRequestContainer extends Component {
             //commenting out picture for now
             picture={volunteer.picture}
             //This maps out the volunteers in the this.state.volunteers array into the child component, volunteer
-            volunteer={volunteer}
-            />
+            volunteer={volunteer}/>
           )}
         <div className='center'><button className='red-button new-group' onClick={this.props.selectDifferentGroup}>Select a different group</button></div>
      </div>
