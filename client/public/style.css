@@ -296,6 +296,7 @@ opacity: 0.5;
 	background: rgba(255,255,255,.75);
 	overflow:auto;
 	position: relative;
+	margin-bottom: 40px;
 }
 
 .chat-form{
