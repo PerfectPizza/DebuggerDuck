@@ -25,7 +25,7 @@ class Progress extends Component {
       <div className="progress-div">
     		<div className="progress-container">
           <ol className="progress-meter">
-            <li id='task1' className="progress-point todo">Fetching Food</li><li id='task2' className="progress-point todo">Food Inbound</li><li id='task3' className="progress-point todo">Food is Here</li>
+            <li className="progress-point done">Orders Being Placed</li><li id='task1' className="progress-point todo">Fetching Food</li><li id='task2' className="progress-point todo">Food Inbound</li><li id='task3' className="progress-point todo">Food is Here</li>
           </ol>
         </div>
       </div>
