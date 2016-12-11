@@ -17,7 +17,7 @@ class VolunteerRequestContainer extends Component {
     };
 
   }
-  
+
   render() {
     //Because this.state.volunteers holds ALL the info for all groups and we only want to render the info relevent to the group,
     //We create a variable called filteredVolunteers. Because the database needs the id of the group but we only hold
@@ -29,7 +29,7 @@ class VolunteerRequestContainer extends Component {
     //If they do volunteer, this.state.volunteer will change and the page will render immediately and will display their info.
     if (filteredVolunteers.length===0){
       return(
-        <div> 
+        <div>
           <div>
             <VolunteerModal changeRole={this.props.changeRole}getDataForRendering={this.getDataForRendering.bind(this)} getCurrentData={this.props.getCurrentData} currentGroup={this.props.currentGroup} onSubmit={this.onSubmit.bind(this)} postVolunteer={this.props.postVolunteer} />
           </div>
@@ -39,7 +39,7 @@ class VolunteerRequestContainer extends Component {
         )
     } else {
       //If there are already volunteers in the system for this particular group, render them.
-      return ( 
+      return (
         //VolunteerModal pops up when you click the Volunteer Services button
      <div className='request-container'>
         <div>
@@ -49,7 +49,7 @@ class VolunteerRequestContainer extends Component {
         {this.state.volunteers.filter(volunteer => volunteer.group_id === this.props.getIdFromGroupName(this.props.currentGroup))
           .map(volunteer =>
             //Render one Volunteer component for each current volunteer in a given group.
-            <Volunteer 
+            <Volunteer
             //I put math.random because react got angry at me
             changeRole={this.props.changeRole}
             postRequest={this.props.postRequest}
@@ -61,13 +61,13 @@ class VolunteerRequestContainer extends Component {
             //This maps out the volunteers in the this.state.volunteers array into the child component, volunteer
             volunteer={volunteer}
             orderNumber={volunteer.orderNumber}/>
-          )} 
+          )}
         <div className='center'><button className='red-button new-group' onClick={this.props.selectDifferentGroup}>Select a different group</button></div>
      </div>
     );
     }
   }
-  
+
   //We created this function because when we were posting data to the database, it wasn't automatically updating on the screen.
   //Although our post requests were successful, the state was only changing in app.js.
   //By creating this function, voluteerRequestContainer.js's state will also change, therefore rerendering everything in it.
@@ -87,7 +87,7 @@ class VolunteerRequestContainer extends Component {
     this.props.getCurrentData();
 
   }
-    
+
 };
 
 export default VolunteerRequestContainer;

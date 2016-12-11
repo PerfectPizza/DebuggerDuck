@@ -14,8 +14,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-
-import io from 'socket.io-client'
 import NavBar from './NavBar.js';
 import LandingPage from './LandingPage.js';
 import Groups from './Groups.js';
@@ -23,7 +21,7 @@ import VolunteerRequestsContainer from './VolunteerRequestsContainer.js';
 import GroupModal from './GroupModal.js';
 import StatusView from './StatusView.js';
 
-let socket = io();
+
 //Primary component for App.
 class Runner extends Component {
   constructor(props) {
@@ -40,7 +38,6 @@ class Runner extends Component {
       //currentData holds all volunteers and requests.
       currentData:[],
       role : null
-      // socket:{this.socket}
     };
     //Binding context for functions that get passed down.
     //this.getGroups = this.getGroups.bind(this);
@@ -168,11 +165,13 @@ class Runner extends Component {
   //postVolunteer POSTS a new volunteer to the server.
     //Accepts a location, a time, and group.  Pulls username from state.
   postVolunteer(location, time, group, orderNumber) {
+
     this.currentOrderId = orderNumber;
     this.time = time;
     this.location = location;
     this.orderUser = this.state.username;
     this.orderUserPicture = this.state.picture;
+
     axios.post('/api/volunteer', {data:{
       username: this.state.username,
       location: location,
