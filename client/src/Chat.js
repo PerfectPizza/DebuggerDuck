@@ -7,16 +7,18 @@ class Chat extends Component {
 
   componentDidMount() {
     var username=this.props.username
-
+    var orderId = this.props.orderId
     $('#chatSubmit').click(()=>{
       let msg = $('#messageForm').val()
-      socket.emit('chat', {message: msg, orderId: this.props.orderId })
+      socket.emit('chat', {message: username+": "+msg, orderId: orderId })
+      console.log("This is what was submitted and by whom: ", msg, username)
       $('#messageForm').val('')
       return false;
     })
 
     socket.on('chat' + this.props.orderId, function(msg) {
-      $('#messages').append($('<li class=chat-message>').text(username+": " +msg))
+      // console.log("this is what a message looks like coming in: chat"+this.props.orderId, msg);
+      $('#messages').append($('<li class=chat-message>').text(msg))
     })
   }
 

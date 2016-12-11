@@ -165,7 +165,7 @@ class Runner extends Component {
   //postVolunteer POSTS a new volunteer to the server.
     //Accepts a location, a time, and group.  Pulls username from state.
   postVolunteer(location, time, group, orderNumber) {
-
+    console.log()
     this.currentOrderId = orderNumber;
     this.time = time;
     this.location = location;
@@ -203,7 +203,7 @@ class Runner extends Component {
       this.location = location;
       this.requestText = text;
       this.orderUserPicture = picture;
-
+      
       axios.post('/api/request', {data:{
       //don't remove.
       username: orderUser,

@@ -26,6 +26,7 @@ import ButtonGroup from './ButtonGroup.js';
       this.orderId = props.orderId;
       this.picture = props.picture;
       console.log(props.picture)
+      console.log(props.orderId)
     }
 
   confirmClose () {
@@ -61,7 +62,7 @@ import ButtonGroup from './ButtonGroup.js';
 
   componentDidMount(){
     socket.on('order'+this.orderId, function(orderMessage){
-      console.log('order message for ORDER'+ this.orderId+ '   Message: ', orderMessage)
+      console.log('order message for order' + this.orderId+ '   Message: ', orderMessage)
 
     })
   }
@@ -78,7 +79,12 @@ import ButtonGroup from './ButtonGroup.js';
           <span>Thanks for heading to {this.props.location}!</span>
           <button className="exit" onClick={() => {this.props.changeRole(null)}}>X</button>
           <Progress status={this.state.orderStatus} orderId={this.props.orderId}/>
-          <Chat messages={this.state.messages} saveMessages={this.saveMessages.bind(this)}/>
+          <Chat 
+            orderId={this.props.orderId}
+            username={this.props.username}
+            messages={this.state.messages} 
+            saveMessages={this.saveMessages.bind(this)}
+          />
           <ButtonGroup orderId={this.props.orderId} changeStatus={this.changeStatus.bind(this)}/>
         </div>
       );
