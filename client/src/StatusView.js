@@ -78,9 +78,18 @@ import ButtonGroup from './ButtonGroup.js';
           <span>Thanks for running to {this.props.location}!</span>
           <button className="exit" onClick={() => {this.props.changeRole(null)}}>X</button>
           <Progress status={this.state.orderStatus} orderId={this.props.orderId}/>
-          <Chat messages={this.state.messages} saveMessages={this.saveMessages.bind(this)}/>
-          <ButtonGroup orderId={this.props.orderId} changeStatus={this.changeStatus.bind(this)}/>
+          <Chat 
+            orderId={this.props.orderId}
+            username={this.props.username}
+            messages={this.state.messages} 
+            saveMessages={this.saveMessages.bind(this)}
+          />
+          <div className="SV-orders-container">
           <ul className="ordersGoHere">Orders:</ul>
+          <ul id="SV-orders-list">
+          </ul>
+          </div>
+          <ButtonGroup orderId={this.props.orderId} changeStatus={this.changeStatus.bind(this)}/>
         </div>
       );
     } else if(this.props.role === 'receiver'){
