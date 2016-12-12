@@ -17,6 +17,7 @@ class RequestModal extends React.Component {
       text:''
     };
     this.orderId = this.props.orderId
+    this.receivername = this.props.receivername
   }
   onTextChange(event) {
     this.setState({text: event.target.value});
@@ -24,7 +25,7 @@ class RequestModal extends React.Component {
 
   sendMessage (orderId, message){
     console.log('order being emittedd: ', orderId, " MEsssage: ", message)
-    socket.emit('order', {orderId: orderId, message: message})
+    socket.emit('order', {orderId: orderId, message: this.receivername +": " + message})
   }
 
   onSubmit (){

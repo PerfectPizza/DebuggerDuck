@@ -167,15 +167,9 @@ io.on('connection', function(socket){
     console.log("status updated", data)
     io.emit('status'+data.orderId, data.status);
   });
-<<<<<<< 2a65f3c123aa80dc6ecd4fbca0f210a6b7e65e78
   socket.on('order', function(data){
     console.log('order message for ORDER'+ data.orderId+ '   Message: ', data.message)
     io.emit('order'+data.orderId, data.message);
-=======
-  socket.on('order message', function(data){
-    console.log("order sent", data);
-    io.emit('order'+data.orderNumber, data.message);
->>>>>>> order id being passed to request modal now
   })
 })
 

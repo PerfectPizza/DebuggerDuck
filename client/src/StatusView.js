@@ -50,8 +50,9 @@ import ButtonGroup from './ButtonGroup.js';
 
   componentDidMount(){
     socket.on('order'+this.orderId, function(order){
-      $('.SV-orders-list').append($('<li>').text(order))
-      console.log('order message for order' + this.props.orderId+ '   Message: ', orderMessage)
+      console.log("order: ", order);
+      $('#SV-orders-list').append( '<li>'+order+'</li>' )
+      // console.log('order message for order' + this.orderId+ '   Message: ', order)
     })
 
   }
@@ -75,8 +76,7 @@ import ButtonGroup from './ButtonGroup.js';
             saveMessages={this.saveMessages.bind(this)}
           />
           <div className="SV-orders-container">
-          <ul className="ordersGoHere">Orders:</ul>
-          <ul id="SV-orders-list">
+          <ol id="SV-orders-list">Orders:
           </ul>
           </div>
           <ButtonGroup orderId={this.props.orderId} changeStatus={this.changeStatus.bind(this)}/>
