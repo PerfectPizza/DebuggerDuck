@@ -17,8 +17,8 @@ class Chat extends Component {
     })
 
     socket.on('chat' + this.props.orderId, function(msg) {
-      // console.log("this is what a message looks like coming in: chat"+this.props.orderId, msg);
       $('#messages').append($('<li class=chat-message>').text(msg))
+      $('.chat-window').scrollTop($('.chat-window')[0].scrollHeight)
     })
   }
 
