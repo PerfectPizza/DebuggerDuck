@@ -384,7 +384,7 @@ opacity: 0.5;
   .chat-message{
   	font-size: 12px;
   }
-  .SV-orders-list li{
+  #SV-orders-list li{
 	font-size: 12px
   }
   .small-profile-pic{
@@ -415,7 +415,7 @@ opacity: 0.5;
   .chat-message{
   	font-size: 12px;
   }
-  .SV-orders-list li{
+  #SV-orders-list li{
 	font-size: 12px
   }
   .small-profile-pic{
