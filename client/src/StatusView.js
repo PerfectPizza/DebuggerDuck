@@ -21,10 +21,11 @@ import ButtonGroup from './ButtonGroup.js';
       super(props);
       console.log("StatusViewProps: ", props)
       this.state = {
-    	orderStatus: 'open'
+    	  orderStatus: 'open'
       }
       this.orderId = props.orderId;
       this.picture = props.picture;
+      console.log(props.picture)
     }
 
   confirmClose () {
@@ -59,14 +60,17 @@ import ButtonGroup from './ButtonGroup.js';
   }
 
   componentDidMount(){
-    socket.on('order'+this.orderId, function(orderMessage){
-      console.log('order message for order' + this.orderId+ '   Message: ', orderMessage)
-
+    socket.on('order'+this.orderId, function(order){
+      $('.ordersGoHere').append($('<li>').text(order))
     })
+
   }
 
   render() {
-    console.log("SV: OrderId:", this.props.orderId)
+    console.log("StatusView OrderID", this.props.orderId)
+    console.log("StatusView OrderUser", this.props.orderUser)
+    console.log("StatusView time", this.props.time)
+    console.log("StatusView location", this.props.location)
     if(this.props.role === 'fetcher'){
       return (
         <div className='volunteer-div'>
@@ -74,13 +78,9 @@ import ButtonGroup from './ButtonGroup.js';
           <span>Thanks for heading to {this.props.location}!</span>
           <button className="exit" onClick={() => {this.props.changeRole(null)}}>X</button>
           <Progress status={this.state.orderStatus} orderId={this.props.orderId}/>
-          <Chat 
-            orderId={this.props.orderId}
-            username={this.props.username}
-            messages={this.state.messages} 
-            saveMessages={this.saveMessages.bind(this)}
-          />
+          <Chat messages={this.state.messages} saveMessages={this.saveMessages.bind(this)}/>
           <ButtonGroup orderId={this.props.orderId} changeStatus={this.changeStatus.bind(this)}/>
+          <ul className="ordersGoHere">Orders:</ul>
         </div>
       );
     } else if(this.props.role === 'receiver'){

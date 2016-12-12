@@ -167,8 +167,9 @@ io.on('connection', function(socket){
     console.log("status updated", data)
     io.emit('status'+data.orderId, data.status);
   });
-  socket.on('order message', function(data){
-    io.emit('order'+data.orderNumber, data.message);
+  socket.on('order', function(data){
+    console.log('order message for ORDER'+ data.orderId+ '   Message: ', data.message)
+    io.emit('order'+data.orderId, data.message);
   })
 })
 
