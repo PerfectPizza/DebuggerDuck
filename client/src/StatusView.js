@@ -4,17 +4,6 @@ import Request from './Request.js';
 import Chat from './Chat.js';
 import Progress from './Progress.js';
 import ButtonGroup from './ButtonGroup.js';
-// import RequestModal from './RequestModal.js';
-
-//EXPECTATIONS FROM OUTSIDE OF THIS COMPONENT:
-  //props:
-    //requests
-    //role
-    //messages?
-    //order ID
-  //STATE CHANGE:
-    //order_progress --> ButtonGroup
-    //messages?
 
   class StatusView extends Component {
     constructor(props) {
@@ -61,7 +50,8 @@ import ButtonGroup from './ButtonGroup.js';
 
   componentDidMount(){
     socket.on('order'+this.orderId, function(order){
-      $('.ordersGoHere').append($('<li>').text(order))
+      $('.SV-orders-list').append($('<li>').text(order))
+      console.log('order message for order' + this.props.orderId+ '   Message: ', orderMessage)
     })
 
   }
@@ -96,6 +86,7 @@ import ButtonGroup from './ButtonGroup.js';
  	  return (
         <div className='volunteer-div'>
           <img className='small-profile-pic' src={this.picture}/>
+          <span id="order">Your Order from {this.props.location}: {this.props.text}</span>
           <Progress status={this.state.orderStatus} orderId={this.props.orderId}/>
           <button className="exit" onClick={() => {this.props.changeRole(null)}}>X</button>
           <Chat
@@ -104,7 +95,6 @@ import ButtonGroup from './ButtonGroup.js';
             messages={this.state.messages}
             saveMessages={this.saveMessages.bind(this)}
           />
-          <span id="order">Your Order from {this.props.location}: {this.props.text}</span>
         </div>
   	  );
     } else if(this.props.role === 'undefined'){

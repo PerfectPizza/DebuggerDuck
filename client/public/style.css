@@ -327,7 +327,7 @@ opacity: 0.5;
 }
 
 .chat-messages,
-..SV-orders-list{
+.SV-orders-list{
 	list-style-type: none
 }
 
