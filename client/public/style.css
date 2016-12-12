@@ -333,23 +333,9 @@ opacity: 0.5;
 	display:inline-block;
 	position: relative;
 }
-#status1{
-	padding: 5px;
-	background: #ff3b3f;
-}
-#status2{
-	padding: 5px;
-	background: #CAEBF2;
-	margin-left: 5px;
-	margin-right: 5px;
-}
-#status3{
-	padding: 5px;
-	background: #ff3b3f;
-}
-
 .btn-group button{
 	border-radius: 10px;
+	background: rgba(202, 235, 242,.75)
 }
 
 .exit{
@@ -358,7 +344,6 @@ opacity: 0.5;
   height: 40px;
   width: 40px;
   border-radius: 50%;
-  border: 1px solid red;
   background: #ff3b3f;
   position: absolute;
   top:0;
