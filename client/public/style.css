@@ -360,3 +360,70 @@ opacity: 0.5;
   display: inline-block;
 }
 
+/*ipad*/
+@media(max-width: 1100){
+  .chat-container{
+  	width: 70%;
+  	display: block !important;
+  }
+  .SV-orders-container{
+  	float: none;
+  	width: 60%;
+  	display: block;
+  }
+  .progress-div{
+  	display: none;
+  }
+  .chat-window{
+  	margin-bottom: 0px;
+  	width: 95%;
+  }
+  .volunteer-div span{
+  	font-size: 14px;
+  }
+  .chat-message{
+  	font-size: 12px;
+  }
+  .SV-orders-list li{
+	font-size: 12px
+  }
+  .small-profile-pic{
+  	width: 10%;
+  	height: auto;
+  }
+  .btn-group{
+  	font-size: 12px;
+  }
+}
+/*mobile*/
+@media(max-width:800px){
+  .SV-orders-container{
+  	float: none;
+  	width: 60%;
+  	display: block;
+  }
+  .progress-div{
+  	display: none;
+  }
+  .chat-window{
+  	margin-bottom: 0px;
+  	width: 95%;
+  }
+  .volunteer-div span{
+  	font-size: 12px;
+  }
+  .chat-message{
+  	font-size: 12px;
+  }
+  .SV-orders-list li{
+	font-size: 12px
+  }
+  .small-profile-pic{
+  	width: 10%;
+  	height: auto;
+  }
+  .btn-group{
+  	font-size: 12px;
+  }
+}
+
