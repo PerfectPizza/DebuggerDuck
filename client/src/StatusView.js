@@ -75,7 +75,7 @@ import ButtonGroup from './ButtonGroup.js';
       return (
         <div className='volunteer-div'>
           <img className='small-profile-pic' src={this.picture}/>
-          <span>Thanks for heading to {this.props.location}!</span>
+          <span>Thanks for running to {this.props.location}!</span>
           <button className="exit" onClick={() => {this.props.changeRole(null)}}>X</button>
           <Progress status={this.state.orderStatus} orderId={this.props.orderId}/>
           <Chat messages={this.state.messages} saveMessages={this.saveMessages.bind(this)}/>
@@ -95,7 +95,7 @@ import ButtonGroup from './ButtonGroup.js';
             messages={this.state.messages}
             saveMessages={this.saveMessages.bind(this)}
           />
-          <span id="order">Your Order: {this.props.text}</span>
+          <span id="order">Your Order from {this.props.location}: {this.props.text}</span>
         </div>
   	  );
     } else if(this.props.role === 'undefined'){
