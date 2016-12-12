@@ -76,8 +76,8 @@ import ButtonGroup from './ButtonGroup.js';
             saveMessages={this.saveMessages.bind(this)}
           />
           <div className="SV-orders-container">
-          <ol id="SV-orders-list">Orders:
-          </ul>
+          <ol id="SV-orders-list">Orders
+          </ol>
           </div>
           <ButtonGroup orderId={this.props.orderId} changeStatus={this.changeStatus.bind(this)}/>
         </div>
