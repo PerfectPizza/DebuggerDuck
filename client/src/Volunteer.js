@@ -8,7 +8,7 @@ import RequestModal from './RequestModal.js';
 class Volunteer extends Component {
   constructor(props) {
     super(props);
-    console.log("Volunteer Props: ", props)
+    // console.log("Volunteer Props: ", props)
     this.state = {
       //This info has been funneled down from volunteerRequestContainer, which was funneled down from app.js
       username: this.props.username,
@@ -30,9 +30,10 @@ class Volunteer extends Component {
   //run getDataforRendering to update App (somewhat ugly, last-minute hack).
   //update existing requests with new data from props.
   onSubmit(text){
-    //console.log('Text?', text, "volunteer id", this.props.volunteer._id);
+    console.log("OrderID", this.props.volunteer.orderId);
+    console.log("onSUBMIT PROPS:", this.props)
     this.props.postRequest(
-      this.props.volunteer.orderId,
+      this.props.orderId,
       text,
       this.props.volunteer.order_user,
       this.props.volunteer.picture,

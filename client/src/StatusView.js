@@ -25,8 +25,6 @@ import ButtonGroup from './ButtonGroup.js';
       }
       this.orderId = props.orderId;
       this.picture = props.picture;
-      console.log(props.picture)
-      console.log(props.orderId)
     }
 
   confirmClose () {
@@ -68,10 +66,7 @@ import ButtonGroup from './ButtonGroup.js';
   }
 
   render() {
-    console.log("StatusView OrderID", this.props.orderId)
-    console.log("StatusView OrderUser", this.props.orderUser)
-    console.log("StatusView time", this.props.time)
-    console.log("StatusView location", this.props.location)
+    console.log("SV: OrderId:", this.props.orderId)
     if(this.props.role === 'fetcher'){
       return (
         <div className='volunteer-div'>

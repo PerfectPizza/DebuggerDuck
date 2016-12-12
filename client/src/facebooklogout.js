@@ -15,7 +15,6 @@ class FacebookLogout extends Component {
   render(){
         //There are two different facebook buttons. Maybe we could make these two separate components? There's not a lot to them,
         //so I kept them together for and simply sent down some props saying 'bottom' for the second button.
-        console.log('heyyyy it rendered')
       	return (
       		           <div
              onClick={this.props.logOut}
