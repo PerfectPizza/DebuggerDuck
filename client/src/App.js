@@ -37,6 +37,7 @@ class Runner extends Component {
       groups:[],
       //currentData holds all volunteers and requests.
       currentData:[],
+      currentOrder: null,
       role : null
     };
     //Binding context for functions that get passed down.
@@ -165,7 +166,7 @@ class Runner extends Component {
   //postVolunteer POSTS a new volunteer to the server.
     //Accepts a location, a time, and group.  Pulls username from state.
   postVolunteer(location, time, group, orderNumber) {
-    console.log()
+
     this.currentOrderId = orderNumber;
     this.time = time;
     this.location = location;
@@ -203,11 +204,11 @@ class Runner extends Component {
       this.location = location;
       this.requestText = text;
       this.orderUserPicture = picture;
-      
+
       axios.post('/api/request', {data:{
       //don't remove.
       username: orderUser,
-      orderId: orderNumber,
+      orderId: orderId,
       picture: picture,
       text: text
 
@@ -219,6 +220,10 @@ class Runner extends Component {
       .catch(error => {
         console.log('Error while submitting food request:', error);
       })
+  }
+
+  setReceiverOrderNumber(orderNumber){
+    this.currentOrderId = orderNumber;
   }
 
   changeRole(role){
@@ -282,6 +287,7 @@ class Runner extends Component {
               <VolunteerRequestsContainer
               //This also needs to be funneled info
                 changeRole={this.changeRole.bind(this)}
+                setReceiverOrderNumber={this.setReceiverOrderNumber.bind(this)}
                 getIdFromGroupName={this.getIdFromGroupName.bind(this)}
                 username={this.state.username}
                 picture={this.state.picture}
@@ -291,7 +297,8 @@ class Runner extends Component {
                 postVolunteer={this.postVolunteer.bind(this)}
                 postRequest={this.postRequest.bind(this)}
                 //We pass down the selectDifferentGroup function to this component since the button is rendered there
-                selectDifferentGroup={this.selectDifferentGroup.bind(this)} />
+                selectDifferentGroup={this.selectDifferentGroup.bind(this)}
+              />
             </div>
             )
           }

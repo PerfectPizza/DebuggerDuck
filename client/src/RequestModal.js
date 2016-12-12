@@ -16,20 +16,21 @@ class RequestModal extends React.Component {
       isOpen: false,
       text:''
     };
+    this.orderId = this.props.orderId
   }
   onTextChange(event) {
-    //every time the user types a new letter, the state is changed to the current input
     this.setState({text: event.target.value});
   }
 
-  sendMessage (message){
-    socket.emit('order message', {orderNumber: this.props.orderNumber, message: message})
+  sendMessage (orderId, message){
+    console.log('order being emittedd: ', orderId, " MEsssage: ", message)
+    socket.emit('order', {orderId: orderId, message: message})
   }
 
   onSubmit (){
     //Don't change this invocation.
     // console.log('modal text?', this.state.text);
-    this.sendMessage(this.state.text)
+    this.sendMessage(this.orderId, this.state.text)
     this.props.changeRole('receiver')
     this.props.onSubmit(this.state.text);
     // this.setState({
