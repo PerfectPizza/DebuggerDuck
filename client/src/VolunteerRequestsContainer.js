@@ -55,6 +55,7 @@ class VolunteerRequestContainer extends Component {
             postRequest={this.props.postRequest}
             key={Math.random()}
             username={volunteer.username}
+            receivername={this.props.username}
             getDataForRendering={this.getDataForRendering.bind(this)}
             //commenting out picture for now
             picture={volunteer.picture}

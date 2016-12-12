@@ -289,8 +289,10 @@ transform: scale(1.1);
 opacity: 0.5;
 }
 
-.chat-window{
+.chat-window,
+.SV-orders-container{
 	height:200px;
+	width:40vw;
 	border-radius: 20px;
 	border:1px solid black;
 	background: rgba(255,255,255,.75);
@@ -298,13 +300,20 @@ opacity: 0.5;
 	position: relative;
 	margin-bottom: 30px;
 }
+.SV-orders-container{
+	background: rgba(202, 235, 242, .75);
+	display: inline-block;
+    height: 200px;
+    width: 38vw;
+    float: right;
+    border-radius: 20px
+}
 
 .chat-form{
 	position: inherit;
 	display: inline-block;
 	float: left;
 	margin-right: 20%;
-	bottom: 0
 }
 
 #messageForm{
@@ -317,14 +326,14 @@ opacity: 0.5;
 	border-radius: 5px;
 }
 
-.chat-messages{
+.chat-messages,
+.SV-orders-list{
 	list-style-type: none
 }
 
-.chat-message{
-	background: rgba();
+.chat-container{
+	display: inline-block;
 }
-
 .progress-div{
 	background-color:#FFC78F;
 }
@@ -335,7 +344,7 @@ opacity: 0.5;
 }
 .btn-group button{
 	border-radius: 10px;
-	background: rgba(202, 235, 242,.75)
+	background-color: rgba(255,255,255,.75)
 }
 
 .exit{
@@ -350,3 +359,4 @@ opacity: 0.5;
   right:0;
   display: inline-block;
 }
+

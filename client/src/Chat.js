@@ -26,7 +26,7 @@ class Chat extends Component {
    render(){
       // There's not much to this component. Technically, we could probably throw it in the app.js if we wanted to.
       return (
-        <div>
+        <div className="chat-container">
           <div className="chat-window">
         		<ul id="messages" className="chat-messages">
             </ul>
