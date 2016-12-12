@@ -6,15 +6,23 @@ class Progress extends Component {
     }
   
   componentDidMount(){
+    console.log(this.props.orderId);
     socket.on('status' + this.props.orderId, function(status){
       if (status === 'Fetcher Departed'){
-        $('#task1').toggleClass( "todo done");
+        $('#task1').removeClass( "todo");
+        $('#task1').addClass("done");
+        $('#task2,#task3').removeClass( "done");
+        $('#task2,#task3').addClass( "todo");
       }
       if (status === 'Fetcher Returning'){
-        $('#task2').toggleClass( "todo done");
+        $('#task1,#task2').removeClass("todo");
+        $('#task1,#task2').addClass("done")
+        $('#task3').removeClass( "done");
+        $('#task3').addClass('todo')
       }
       if (status === 'Food Arrived'){
-        $('#task3').toggleClass( "todo done");
+        $('#task1,#task2,#task3').removeClass("todo");
+        $('#task1,#task2,#task3').addClass("done")
       }
     })
   }
